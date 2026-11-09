@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ระบบออกใบเสร็จรับเงิน - มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</title>
+  <title>🧪 [ระบบทดสอบ] ระบบออกใบเสร็จรับเงิน - มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</title>
   <!-- Google Fonts: Sarabun -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1292,12 +1292,19 @@
 </head>
 <body>
 
+  <!-- ======================== TEST ENVIRONMENT BANNER ======================== -->
+  <div style="background: linear-gradient(90deg, #b45309, #d97706, #b45309); color: #ffffff; text-align: center; padding: 7px 14px; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); z-index: 9999; position: relative;">
+    <span style="font-size: 1.1rem;">🧪</span>
+    <span>[ระบบทดลองใช้งาน - TEST SANDBOX] สำหรับทดสอบการใช้งานพร้อมกันหลายเครื่อง โดยไม่ส่งผลกระทบต่อระบบจริง</span>
+    <span style="background: rgba(0,0,0,0.25); padding: 2px 8px; border-radius: 9999px; font-size: 0.72rem; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.4);">ISOLATED (id=test)</span>
+  </div>
+
   <!-- ======================== TOP NAVBAR ======================== -->
   <header class="top-navbar no-print">
     <div class="brand-wrap">
       <img id="navLogoImg" class="brand-logo" alt="ตรามหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ" />
       <div class="brand-text">
-        <h1>ระบบออกใบเสร็จรับเงิน</h1>
+        <h1>ระบบออกใบเสร็จรับเงิน <span style="background:#fef3c7; color:#92400e; font-size:0.75rem; padding:2px 8px; border-radius:6px; border:1px solid #fcd34d; vertical-align:middle; margin-left:6px;">🧪 โหมดทดสอบ (TEST)</span></h1>
         <p>มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ (RMUTSB)</p>
       </div>
     </div>
@@ -1330,6 +1337,7 @@
   <main id="landingView" class="landing-container no-print" style="max-width:440px; margin:3.5rem auto 2.5rem; padding:0 1rem;">
     <div class="auth-card" style="background:#ffffff; border-radius:14px; box-shadow:0 12px 32px rgba(15, 44, 89, 0.12), 0 2px 6px rgba(15, 44, 89, 0.06); border:1px solid #e2e8f0; border-top:5px solid var(--primary-navy); padding:2.25rem 2rem; text-align:center;">
       <div style="margin-bottom:1.5rem;">
+        <div style="display:inline-block; margin-bottom:0.75rem; background:#fef3c7; color:#92400e; padding:4px 12px; border-radius:9999px; font-size:0.8rem; font-weight:600; border:1px solid #fcd34d;">🧪 โหมดทดสอบการใช้งาน (Sandbox Environment)</div>
         <img id="heroLogoImg" alt="ตราสัญลักษณ์ มทร.สุวรรณภูมิ" style="width:72px; height:72px; object-fit:contain; margin-bottom:0.75rem;" />
         <h2 style="font-size:1.4rem; font-weight:700; color:var(--primary-navy); margin:0 0 0.35rem 0;">ระบบออกใบเสร็จรับเงิน</h2>
         <div style="font-size:0.92rem; color:var(--slate-600); font-weight:500;">มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</div>
@@ -3421,13 +3429,13 @@
     if (!window.RMUTSB_SUPABASE_CONFIG) {
       const defUrl = "https://qrjkcsadqinujtpnsdvi.supabase.co";
       const defKey = "sb_publishable_mBEYicRTTxEo0JNlf3TLFg_1w7he-Gw";
-      let u = safeGetItem("rmutsb_supabase_url");
-      let k = safeGetItem("rmutsb_supabase_anon_key");
+      let u = safeGetItem("rmutsb_test_supabase_url");
+      let k = safeGetItem("rmutsb_test_supabase_anon_key");
       if (!u || u.includes("vuhihimohaheveiwfyyb") || !k || k.includes("UH3sGkz2QXJBoaNRfFE3YkFA58DaVSm8WHH9TCXqlCg") || k.includes("k3Y5miInDeiBdVhYrnG4")) {
         u = defUrl;
         k = defKey;
-        safeSetItem("rmutsb_supabase_url", u);
-        safeSetItem("rmutsb_supabase_anon_key", k);
+        safeSetItem("rmutsb_test_supabase_url", u);
+        safeSetItem("rmutsb_test_supabase_anon_key", k);
       }
       window.RMUTSB_SUPABASE_CONFIG = {
         url: (u || "").trim().replace(/\/rest\/v1\/?$/, "").replace(/\/+$/, ""),
@@ -3439,12 +3447,12 @@
         saveConfig: function (u, k) {
           this.url = (u || "").trim().replace(/\/rest\/v1\/?$/, "").replace(/\/+$/, "");
           this.anonKey = (k || "").trim();
-          safeSetItem("rmutsb_supabase_url", this.url);
-          safeSetItem("rmutsb_supabase_anon_key", this.anonKey);
+          safeSetItem("rmutsb_test_supabase_url", this.url);
+          safeSetItem("rmutsb_test_supabase_anon_key", this.anonKey);
         },
         clearConfig: function () {
-          safeRemoveItem("rmutsb_supabase_url");
-          safeRemoveItem("rmutsb_supabase_anon_key");
+          safeRemoveItem("rmutsb_test_supabase_url");
+          safeRemoveItem("rmutsb_test_supabase_anon_key");
           this.url = defUrl;
           this.anonKey = defKey;
         }
@@ -4446,7 +4454,7 @@
     // ======================== SUPABASE & FALLBACK INITIALIZATION ========================
     const BUILTIN_DEFAULT_SUPABASE_URL = "https://qrjkcsadqinujtpnsdvi.supabase.co";
     const BUILTIN_DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_mBEYicRTTxEo0JNlf3TLFg_1w7he-Gw";
-    const BUILTIN_DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4IF3hA2w16lkRZMDQruWVLa88k03DmqPS31SHUWGpMA/exec";
+    const BUILTIN_DEFAULT_GAS_URL = "";
 
     let activeDbProvider = "googlesheet"; // "googlesheet" | "supabase" | "fallback"
     let gasWebAppUrl = BUILTIN_DEFAULT_GAS_URL;
@@ -4549,7 +4557,7 @@
 
       // 0. เริ่มต้น BroadcastChannel สำหรับซิงค์ข้ามแท็บในเบราว์เซอร์เดียวกันทันที (0ms)
       if ("BroadcastChannel" in window && !broadcastChannel) {
-        broadcastChannel = new BroadcastChannel("rmutsb_receipt_sync_channel");
+        broadcastChannel = new BroadcastChannel("rmutsb_test_receipt_sync_channel_test");
         broadcastChannel.onmessage = (ev) => {
           if (ev.data && ev.data.type === "STATE_UPDATED") {
             loadAppStateFromStorageOrSupabase(false);
@@ -4560,15 +4568,15 @@
       // เริ่มต้นสร้าง Supabase Client ทันทีเสมอ เพื่อให้เชื่อมต่อ WebSocket Real-time ได้ทันทีทุกโหมด ทุกเครื่อง
       if (window.supabase && !supabaseClient) {
         try {
-          const sUrl = cleanSupabaseUrl(safeGetItem("rmutsb_supabase_url") || cfg.supabaseUrl || cfg.url || BUILTIN_DEFAULT_SUPABASE_URL);
-          const sKey = cleanSupabaseKey(safeGetItem("rmutsb_supabase_anon_key") || cfg.supabaseAnonKey || cfg.anonKey || BUILTIN_DEFAULT_SUPABASE_ANON_KEY);
+          const sUrl = cleanSupabaseUrl(safeGetItem("rmutsb_test_supabase_url") || cfg.supabaseUrl || cfg.url || BUILTIN_DEFAULT_SUPABASE_URL);
+          const sKey = cleanSupabaseKey(safeGetItem("rmutsb_test_supabase_anon_key") || cfg.supabaseAnonKey || cfg.anonKey || BUILTIN_DEFAULT_SUPABASE_ANON_KEY);
           supabaseClient = window.supabase.createClient(sUrl, sKey);
         } catch(e) {
           console.warn("Supabase initial client creation warning:", e);
         }
       }
 
-      const rawLocal = safeGetItem("rmutsb_fallback_app_state");
+      const rawLocal = safeGetItem("rmutsb_test_fallback_app_state");
       if (rawLocal) {
         try {
           appState = normalizeAndMigrateAppState(JSON.parse(rawLocal));
@@ -4577,11 +4585,11 @@
         }
       } else {
         appState = normalizeAndMigrateAppState(getDefaultAppState());
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
       }
 
-      gasWebAppUrl = cleanGasUrl(safeGetItem("rmutsb_gas_url") || (window.RMUTSB_DATABASE_CONFIG && window.RMUTSB_DATABASE_CONFIG.getGasUrl && window.RMUTSB_DATABASE_CONFIG.getGasUrl()) || BUILTIN_DEFAULT_GAS_URL);
-      const savedProvider = safeGetItem("rmutsb_active_db_provider") || (gasWebAppUrl ? "googlesheet" : "supabase");
+      gasWebAppUrl = cleanGasUrl(safeGetItem("rmutsb_test_gas_url") || (window.RMUTSB_DATABASE_CONFIG && window.RMUTSB_DATABASE_CONFIG.getGasUrl && window.RMUTSB_DATABASE_CONFIG.getGasUrl()) || BUILTIN_DEFAULT_GAS_URL);
+      const savedProvider = safeGetItem("rmutsb_test_active_db_provider") || "supabase";
 
       // 1. ลองเชื่อมต่อ Google Sheet Web App หากมีการตั้งค่าไว้
       if (gasWebAppUrl && (savedProvider === "googlesheet" || !savedProvider)) {
@@ -4623,7 +4631,7 @@
             const { data: testRow, error: testErr } = await client
               .from("app_state")
               .select("updated_at")
-              .eq("id", "main")
+              .eq("id", "test")
               .maybeSingle();
 
             if (!testErr) {
@@ -4707,7 +4715,7 @@
     }
 
     function restoreSavedUserSession() {
-      const savedSession = safeGetItem("rmutsb_active_user_session");
+      const savedSession = safeGetItem("rmutsb_test_active_user_session");
       if (!savedSession) return;
       try {
         const parsed = JSON.parse(savedSession);
@@ -4720,7 +4728,7 @@
           currentUser = Object.assign({}, latestUser);
           completePortalRouting(parsed.portal || (currentUser.role === "admin" ? "admin" : "user"));
         } else {
-          safeRemoveItem("rmutsb_active_user_session");
+          safeRemoveItem("rmutsb_test_active_user_session");
         }
       } catch (e) {}
     }
@@ -4761,7 +4769,7 @@
 
         cloudState.receipts = Array.from(mergedMap.values());
         appState = normalizeAndMigrateAppState(cloudState);
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
         lastStateUpdatedAt = updatedAt || new Date().toISOString();
         lastCloudUpdatedAt = updatedAt || "";
         refreshAllVisibleViewsPreservingForms();
@@ -4776,7 +4784,7 @@
           const { data: stateRow, error: sErr } = await supabaseClient
             .from("app_state")
             .select("data, updated_at")
-            .eq("id", "main")
+            .eq("id", "test")
             .maybeSingle();
 
           if (!sErr && stateRow && stateRow.data) {
@@ -4808,7 +4816,7 @@
             const { data: checkRow } = await supabaseClient
               .from("app_state")
               .select("updated_at")
-              .eq("id", "main")
+              .eq("id", "test")
               .maybeSingle();
 
             if (checkRow && checkRow.updated_at && checkRow.updated_at === lastCloudUpdatedAt) {
@@ -4820,7 +4828,7 @@
           const { data: stateRow, error: sErr } = await supabaseClient
             .from("app_state")
             .select("data, updated_at")
-            .eq("id", "main")
+            .eq("id", "test")
             .maybeSingle();
 
           if (!sErr && stateRow && stateRow.data) {
@@ -4844,7 +4852,7 @@
       }
 
       // 5. ค. โหมดในเครื่อง (Local Storage Fallback)
-      const rawLocal = safeGetItem("rmutsb_fallback_app_state");
+      const rawLocal = safeGetItem("rmutsb_test_fallback_app_state");
       if (rawLocal) {
         try {
           appState = normalizeAndMigrateAppState(JSON.parse(rawLocal));
@@ -4866,7 +4874,7 @@
         } else {
           appState = normalizeAndMigrateAppState(appState);
         }
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
 
         const nowIso = new Date().toISOString();
         lastStateUpdatedAt = nowIso;
@@ -4882,7 +4890,7 @@
             await supabaseClient
               .from("app_state")
               .upsert({
-                id: "main",
+                id: "test",
                 data: appState,
                 updated_at: nowIso
               });
@@ -4940,12 +4948,12 @@
             supabaseClient.removeChannel(realtimeChannel);
           }
           realtimeChannel = supabaseClient
-            .channel("rmutsb-realtime-channel")
+            .channel("rmutsb-realtime-channel-test")
             .on(
               "postgres_changes",
-              { event: "*", schema: "public", table: "app_state", filter: "id=eq.main" },
+              { event: "*", schema: "public", table: "app_state", filter: "id=eq.test" },
               (payload) => {
-                if (payload && payload.new && payload.new.id && payload.new.id !== "main") return;
+                if (payload && payload.new && payload.new.id && payload.new.id !== "test") return;
                 console.log("Realtime event received from Supabase:", payload);
                 loadAppStateFromStorageOrSupabase(false, true);
               }
@@ -5030,17 +5038,17 @@
       if (mode === "admin") {
         const adm = users.find(u => u.role === "admin" && u.active !== false) || users[0];
         currentUser = Object.assign({}, adm);
-        safeSetItem("rmutsb_active_user_session", JSON.stringify({ user: currentUser, portal: "admin" }));
+        safeSetItem("rmutsb_test_active_user_session", JSON.stringify({ user: currentUser, portal: "admin" }));
         completePortalRouting("admin");
       } else if (mode === "viewer") {
         const vw = users.find(u => u.permission_level === "viewer" && u.active !== false) || users[2] || users[0];
         currentUser = Object.assign({}, vw);
-        safeSetItem("rmutsb_active_user_session", JSON.stringify({ user: currentUser, portal: "user" }));
+        safeSetItem("rmutsb_test_active_user_session", JSON.stringify({ user: currentUser, portal: "user" }));
         completePortalRouting("user");
       } else {
         const iss = users.find(u => u.role === "user" && u.permission_level !== "viewer" && u.active !== false) || users[1] || users[0];
         currentUser = Object.assign({}, iss);
-        safeSetItem("rmutsb_active_user_session", JSON.stringify({ user: currentUser, portal: "user" }));
+        safeSetItem("rmutsb_test_active_user_session", JSON.stringify({ user: currentUser, portal: "user" }));
         completePortalRouting("user");
       }
       showToast("เข้าสู่ระบบเรียบร้อยแล้ว: " + currentUser.display_name);
@@ -5160,7 +5168,7 @@
         currentUser = Object.assign({}, matchedProfile);
         const targetPortalRole = currentUser.role === "admin" ? "admin" : "user";
 
-        safeSetItem("rmutsb_active_user_session", JSON.stringify({
+        safeSetItem("rmutsb_test_active_user_session", JSON.stringify({
           user: currentUser,
           portal: targetPortalRole
         }));
@@ -5292,7 +5300,7 @@
             }
 
             currentUser = Object.assign({}, matchedProfile);
-            safeSetItem("rmutsb_active_user_session", JSON.stringify({
+            safeSetItem("rmutsb_test_active_user_session", JSON.stringify({
               user: currentUser,
               portal: targetPortalRole
             }));
@@ -5398,7 +5406,7 @@
         active: profile.active
       };
 
-      safeSetItem("rmutsb_active_user_session", JSON.stringify({
+      safeSetItem("rmutsb_test_active_user_session", JSON.stringify({
         user: currentUser,
         portal: targetPortal
       }));
@@ -5468,7 +5476,7 @@
     }
 
     async function handleLogout() {
-      safeRemoveItem("rmutsb_active_user_session");
+      safeRemoveItem("rmutsb_test_active_user_session");
       if (isSupabaseMode() && supabaseClient) {
         try { await supabaseClient.auth.signOut(); } catch (e) {}
       }
@@ -5694,7 +5702,7 @@
         });
         if (currentUser && currentUser.user_id === users[adminIdx].user_id) {
           currentUser = Object.assign({}, currentUser, users[adminIdx]);
-          safeSetItem("rmutsb_active_user_session", JSON.stringify({ user: currentUser, portal: "admin" }));
+          safeSetItem("rmutsb_test_active_user_session", JSON.stringify({ user: currentUser, portal: "admin" }));
           document.getElementById("currentUserBadge").textContent =
             `${currentUser.display_name} (${currentUser.username || currentUser.staff_code || "Admin"})`;
         }
@@ -6043,7 +6051,7 @@
 
       if (currentUser && (currentUser.user_id === user_id || currentUser.username === username)) {
         currentUser = Object.assign({}, currentUser, profileRecord);
-        safeSetItem("rmutsb_active_user_session", JSON.stringify({ user: currentUser, portal: currentUser.role === "admin" ? "admin" : "user" }));
+        safeSetItem("rmutsb_test_active_user_session", JSON.stringify({ user: currentUser, portal: currentUser.role === "admin" ? "admin" : "user" }));
       }
 
       appState.users = users;
@@ -6269,7 +6277,7 @@
       }
 
       currentUser = Object.assign({}, currentUser, updatedUser);
-      safeSetItem("rmutsb_active_user_session", JSON.stringify({
+      safeSetItem("rmutsb_test_active_user_session", JSON.stringify({
         user: currentUser,
         portal: currentUser.role === "admin" ? "admin" : "user"
       }));
@@ -6708,7 +6716,7 @@ ${loginUrl}
         if (!appState.emailLogs) appState.emailLogs = [];
         appState.emailLogs.unshift(logEntry);
         if (appState.emailLogs.length > 50) appState.emailLogs.pop();
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
         renderAdminEmailSettings();
         await persistAppState();
 
@@ -6720,7 +6728,7 @@ ${loginUrl}
         if (!appState.emailLogs) appState.emailLogs = [];
         appState.emailLogs.unshift(logEntry);
         if (appState.emailLogs.length > 50) appState.emailLogs.pop();
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
         renderAdminEmailSettings();
         await persistAppState();
         return { success: false, error: err.message, log: logEntry };
@@ -7258,7 +7266,7 @@ ${loginUrl}
 
     function exportSystemBackupJSON() {
       const jsonStr = JSON.stringify(appState, null, 2);
-      downloadBlobFile(jsonStr, `rmutsb_receipt_system_backup_${new Date().toISOString().slice(0,10)}.json`, "application/json;charset=utf-8;");
+      downloadBlobFile(jsonStr, `rmutsb_test_receipt_system_backup_${new Date().toISOString().slice(0,10)}.json`, "application/json;charset=utf-8;");
       showToast("ส่งออกไฟล์สำรองข้อมูลระบบ (JSON) เรียบร้อยแล้ว");
     }
 
@@ -8471,7 +8479,7 @@ ${loginUrl}
           if (!error && data && data.receipt) {
             if (data.state) {
               appState = normalizeAndMigrateAppState(data.state);
-              safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+              safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
             }
             issuedReceipt = data.receipt;
             await persistAppState();
@@ -9357,7 +9365,7 @@ ${loginUrl}
           });
           if (!error && data && data.state) {
             appState = normalizeAndMigrateAppState(data.state);
-            safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+            safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
             refreshAllVisibleViewsPreservingForms();
             cancelledViaRpc = true;
             await persistAppState();
@@ -9738,7 +9746,7 @@ ${loginUrl}
         const u = (appState.users || []).find(x => x.user_id === currentUser.user_id);
         if (u) {
           u.signatureScale = val;
-          safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+          safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
         }
       }
     }
@@ -9766,7 +9774,7 @@ ${loginUrl}
     const GAS_WEBAPP_CODE = "/**\n * ============================================================================\n * Google Apps Script \u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e23\u0e30\u0e1a\u0e1a\u0e2d\u0e2d\u0e01\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19 \u0e21\u0e17\u0e23.\u0e2a\u0e38\u0e27\u0e23\u0e23\u0e13\u0e20\u0e39\u0e21\u0e34 (RMUTSB)\n * \u0e23\u0e2d\u0e07\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e21\u0e15\u0e48\u0e2d\u0e41\u0e1a\u0e1a\u0e40\u0e23\u0e35\u0e22\u0e25\u0e44\u0e17\u0e21\u0e4c\u0e1c\u0e48\u0e32\u0e19 Google Sheet Web App\n * ============================================================================\n * \n * \u0e27\u0e34\u0e18\u0e35\u0e01\u0e32\u0e23\u0e19\u0e33\u0e44\u0e1b\u0e15\u0e34\u0e14\u0e15\u0e31\u0e49\u0e07\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19:\n * 1. \u0e40\u0e1b\u0e34\u0e14 Google Sheets \u0e40\u0e1b\u0e25\u0e48\u0e32\u0e43\u0e2b\u0e21\u0e48\u0e02\u0e36\u0e49\u0e19\u0e21\u0e32 1 \u0e44\u0e1f\u0e25\u0e4c (\u0e2b\u0e23\u0e37\u0e2d\u0e44\u0e1f\u0e25\u0e4c\u0e17\u0e35\u0e48\u0e21\u0e35\u0e2d\u0e22\u0e39\u0e48\u0e41\u0e25\u0e49\u0e27)\n * 2. \u0e44\u0e1b\u0e17\u0e35\u0e48\u0e40\u0e21\u0e19\u0e39 \"\u0e2a\u0e48\u0e27\u0e19\u0e02\u0e22\u0e32\u0e22\" (Extensions) -> \"Apps Script\"\n * 3. \u0e25\u0e1a\u0e42\u0e04\u0e49\u0e14\u0e40\u0e14\u0e34\u0e21\u0e2d\u0e2d\u0e01\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14 \u0e41\u0e25\u0e49\u0e27\u0e27\u0e32\u0e07\u0e42\u0e04\u0e49\u0e14\u0e43\u0e19\u0e44\u0e1f\u0e25\u0e4c\u0e19\u0e35\u0e49\u0e25\u0e07\u0e44\u0e1b\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14 \u0e41\u0e25\u0e49\u0e27\u0e01\u0e14\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01 (Ctrl+S \u0e2b\u0e23\u0e37\u0e2d Cmd+S)\n * 4. \u0e04\u0e25\u0e34\u0e01\u0e1b\u0e38\u0e48\u0e21\u0e2a\u0e35\u0e19\u0e49\u0e33\u0e40\u0e07\u0e34\u0e19 \"\u0e01\u0e32\u0e23\u0e17\u0e33\u0e43\u0e2b\u0e49\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49\" (Deploy) -> \"\u0e01\u0e32\u0e23\u0e17\u0e33\u0e43\u0e2b\u0e49\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49\u0e23\u0e32\u0e22\u0e01\u0e32\u0e23\u0e43\u0e2b\u0e21\u0e48\" (New deployment)\n * 5. \u0e40\u0e25\u0e37\u0e2d\u0e01\u0e1b\u0e23\u0e30\u0e40\u0e20\u0e17 (\u0e23\u0e39\u0e1b\u0e1f\u0e31\u0e19\u0e40\u0e1f\u0e37\u0e2d\u0e07): \"\u0e40\u0e27\u0e47\u0e1a\u0e41\u0e2d\u0e1b\" (Web app)\n * 6. \u0e15\u0e31\u0e49\u0e07\u0e04\u0e48\u0e32\u0e14\u0e31\u0e07\u0e19\u0e35\u0e49:\n *    - \u0e04\u0e33\u0e2d\u0e18\u0e34\u0e1a\u0e32\u0e22: \u0e23\u0e30\u0e1a\u0e1a\u0e2d\u0e2d\u0e01\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08 RMUTSB\n *    - \u0e14\u0e33\u0e40\u0e19\u0e34\u0e19\u0e01\u0e32\u0e23\u0e43\u0e19\u0e10\u0e32\u0e19\u0e30 (Execute as): \"\u0e09\u0e31\u0e19 (\u0e2d\u0e35\u0e40\u0e21\u0e25\u0e02\u0e2d\u0e07\u0e04\u0e38\u0e13)\" (Me)\n *    - \u0e1c\u0e39\u0e49\u0e17\u0e35\u0e48\u0e21\u0e35\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c\u0e40\u0e02\u0e49\u0e32\u0e16\u0e36\u0e07 (Who has access): \"\u0e17\u0e38\u0e01\u0e04\u0e19\" (Anyone)   <-- \u0e2a\u0e33\u0e04\u0e31\u0e0d\u0e21\u0e32\u0e01! \u0e15\u0e49\u0e2d\u0e07\u0e40\u0e25\u0e37\u0e2d\u0e01 Anyone\n * 7. \u0e04\u0e25\u0e34\u0e01 \"\u0e01\u0e32\u0e23\u0e17\u0e33\u0e43\u0e2b\u0e49\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19\u0e44\u0e14\u0e49\" (Deploy) -> \u0e43\u0e2b\u0e49\u0e2a\u0e34\u0e17\u0e18\u0e34\u0e4c\u0e40\u0e02\u0e49\u0e32\u0e16\u0e36\u0e07 (Authorize access)\n * 8. \u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01 \"URL \u0e02\u0e2d\u0e07\u0e40\u0e27\u0e47\u0e1a\u0e41\u0e2d\u0e1b\" (Web app URL) \u0e17\u0e35\u0e48\u0e44\u0e14\u0e49 (\u0e02\u0e36\u0e49\u0e19\u0e15\u0e49\u0e19\u0e14\u0e49\u0e27\u0e22 https://script.google.com/macros/s/.../exec)\n * 9. \u0e19\u0e33 URL \u0e44\u0e1b\u0e43\u0e2a\u0e48\u0e43\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e15\u0e48\u0e32\u0e07 \"\u0e15\u0e31\u0e49\u0e07\u0e04\u0e48\u0e32\u0e10\u0e32\u0e19\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25 Google Sheet\" \u0e1a\u0e19\u0e2b\u0e19\u0e49\u0e32\u0e40\u0e27\u0e47\u0e1a\u0e23\u0e30\u0e1a\u0e1a\u0e2d\u0e2d\u0e01\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\n */\n\nconst SHEET_RECEIPTS = \"\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\";\nconst SHEET_SYSTEM_STATE = \"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a\";\n\n// ======================== API ENDPOINTS ========================\n\nfunction doGet(e) {\n  try {\n    const action = (e && e.parameter && e.parameter.action) || \"getState\";\n    \n    if (action === \"ping\") {\n      return jsonResponse({ status: \"success\", message: \"RMUTSB Google Sheet API is online\", timestamp: new Date().toISOString() });\n    }\n    \n    if (action === \"getState\") {\n      const state = loadSystemState();\n      // \u0e14\u0e36\u0e07\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e41\u0e16\u0e27\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14\u0e08\u0e32\u0e01\u0e41\u0e17\u0e47\u0e1a \"\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\" \u0e14\u0e49\u0e27\u0e22 \u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e43\u0e2b\u0e49\u0e44\u0e14\u0e49\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e17\u0e35\u0e48\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e1e\u0e34\u0e21\u0e1e\u0e4c\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e43\u0e19 Google Sheet \u0e42\u0e14\u0e22\u0e15\u0e23\u0e07 (\u0e40\u0e0a\u0e48\u0e19 \u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08 0207)\n      try {\n        const sheetReceipts = getReceiptsFromSheet();\n        if (sheetReceipts && sheetReceipts.length > 0) {\n          if (!state.data) state.data = {};\n          if (!state.data.receipts) state.data.receipts = [];\n\n          const map = new Map();\n          state.data.receipts.forEach(r => {\n            if (r) {\n              const k = (r.bookNo || \"\") + \"-\" + (r.no || \"\");\n              map.set(k, r);\n            }\n          });\n\n          sheetReceipts.forEach(sr => {\n            if (sr && sr.bookNo && sr.no) {\n              const k = sr.bookNo + \"-\" + sr.no;\n              map.set(k, Object.assign({}, map.get(k) || {}, sr));\n            }\n          });\n\n          state.data.receipts = Array.from(map.values());\n\n          // \u0e1b\u0e23\u0e31\u0e1a\u0e1b\u0e23\u0e38\u0e07\u0e04\u0e48\u0e32 latest \u0e02\u0e2d\u0e07\u0e40\u0e25\u0e48\u0e21\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e43\u0e2b\u0e49\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e25\u0e02\u0e25\u0e48\u0e32\u0e2a\u0e38\u0e14\u0e40\u0e2a\u0e21\u0e2d\n          if (Array.isArray(state.data.books)) {\n            state.data.books.forEach(b => {\n              const bReceipts = state.data.receipts.filter(r => r && r.bookNo === b.bookNo);\n              if (bReceipts.length > 0) {\n                const maxNo = Math.max(...bReceipts.map(r => parseInt(String(r.no || \"0\").replace(/\\D/g, \"\"), 10) || 0));\n                if (maxNo > (Number(b.latest) || 0)) b.latest = maxNo;\n              }\n            });\n          }\n        }\n      } catch (sheetErr) {}\n\n      return jsonResponse({\n        status: \"success\",\n        updated_at: state.updated_at || new Date().toISOString(),\n        data: state.data || null\n      });\n    }\n\n    if (action === \"getReceipts\") {\n      const receipts = getReceiptsFromSheet();\n      return jsonResponse({ status: \"success\", count: receipts.length, receipts: receipts });\n    }\n\n    return jsonResponse({ status: \"success\", message: \"RMUTSB Receipt System Web App is ready\" });\n  } catch (err) {\n    return jsonResponse({ status: \"error\", message: err.toString() });\n  }\n}\n\nfunction doPost(e) {\n  try {\n    let payload = null;\n    if (e && e.postData && e.postData.contents) {\n      try {\n        payload = JSON.parse(e.postData.contents);\n      } catch (jsonErr) {\n        payload = e.parameter;\n      }\n    } else if (e && e.parameter) {\n      payload = e.parameter;\n    }\n\n    if (!payload) {\n      return jsonResponse({ status: \"error\", message: \"No data payload received\" });\n    }\n\n    const action = payload.action || \"syncState\";\n\n    // 1. \u0e0b\u0e34\u0e07\u0e04\u0e4c\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e17\u0e31\u0e49\u0e07\u0e23\u0e30\u0e1a\u0e1a (\u0e23\u0e27\u0e21\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14, \u0e42\u0e04\u0e23\u0e07\u0e01\u0e32\u0e23, \u0e1a\u0e31\u0e0d\u0e0a\u0e35\u0e18\u0e19\u0e32\u0e04\u0e32\u0e23, \u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e07\u0e32\u0e19, \u0e25\u0e32\u0e22\u0e40\u0e0b\u0e47\u0e19)\n    if (action === \"syncState\" || action === \"saveState\") {\n      const appStateData = payload.data || payload.appState || payload;\n      const nowIso = new Date().toISOString();\n      \n      // \u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e23\u0e30\u0e1a\u0e1a\u0e25\u0e07\u0e0a\u0e35\u0e15\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a\n      saveSystemState(appStateData, nowIso);\n      \n      // \u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e2b\u0e23\u0e37\u0e2d\u0e2d\u0e31\u0e1b\u0e40\u0e14\u0e15\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e25\u0e07\u0e0a\u0e35\u0e15\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\u0e41\u0e1a\u0e1a\u0e40\u0e23\u0e35\u0e22\u0e07\u0e41\u0e16\u0e27\n      let receiptsCount = 0;\n      if (appStateData && Array.isArray(appStateData.receipts)) {\n        syncReceiptsToSheet(appStateData.receipts);\n        receiptsCount = appStateData.receipts.length;\n      }\n\n      return jsonResponse({\n        status: \"success\",\n        message: \"\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e02\u0e36\u0e49\u0e19 Google Sheet \u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08\",\n        receiptsCount: receiptsCount,\n        updated_at: nowIso\n      });\n    }\n\n    // 2. \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e43\u0e1a\u0e43\u0e2b\u0e21\u0e48\u0e17\u0e31\u0e19\u0e17\u0e35 (Fast Add Receipt)\n    if (action === \"addReceipt\") {\n      const receipt = payload.receipt;\n      if (!receipt) {\n        return jsonResponse({ status: \"error\", message: \"No receipt object provided\" });\n      }\n      appendReceiptRow(receipt);\n      \n      // \u0e2d\u0e31\u0e1b\u0e40\u0e14\u0e15 state \u0e14\u0e49\u0e27\u0e22\u0e2b\u0e32\u0e01\u0e2a\u0e48\u0e07\u0e21\u0e32\u0e14\u0e49\u0e27\u0e22\n      if (payload.appState) {\n        saveSystemState(payload.appState, new Date().toISOString());\n      }\n\n      return jsonResponse({\n        status: \"success\",\n        message: \"\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e40\u0e25\u0e02\u0e17\u0e35\u0e48 \" + (receipt.no || \"\") + \" \u0e40\u0e23\u0e35\u0e22\u0e1a\u0e23\u0e49\u0e2d\u0e22\u0e41\u0e25\u0e49\u0e27\",\n        receiptNo: receipt.no\n      });\n    }\n\n    // 3. \u0e40\u0e23\u0e34\u0e48\u0e21\u0e15\u0e49\u0e19\u0e08\u0e31\u0e14\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e23\u0e32\u0e07 (Init/Format Sheet)\n    if (action === \"initSheet\") {\n      formatAllSheets();\n      return jsonResponse({ status: \"success\", message: \"\u0e08\u0e31\u0e14\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a\u0e15\u0e32\u0e23\u0e32\u0e07\u0e2a\u0e33\u0e40\u0e23\u0e47\u0e08\" });\n    }\n\n    return jsonResponse({ status: \"error\", message: \"Unknown action: \" + action });\n  } catch (err) {\n    return jsonResponse({ status: \"error\", message: err.toString() });\n  }\n}\n\n// ======================== HELPER FUNCTIONS ========================\n\nfunction jsonResponse(data) {\n  return ContentService.createTextOutput(JSON.stringify(data))\n    .setMimeType(ContentService.MimeType.JSON);\n}\n\nfunction getOrCreateSheet(sheetName) {\n  const ss = SpreadsheetApp.getActiveSpreadsheet();\n  let sheet = ss.getSheetByName(sheetName);\n  if (!sheet) {\n    sheet = ss.insertSheet(sheetName);\n  }\n  return sheet;\n}\n\n/**\n * \u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e23\u0e30\u0e1a\u0e1a (appState) \u0e25\u0e07\u0e41\u0e17\u0e47\u0e1a \"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a\"\n * \u0e23\u0e2d\u0e07\u0e23\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e41\u0e1a\u0e48\u0e07 Chunk \u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e25\u0e30 40,000 \u0e15\u0e31\u0e27\u0e2d\u0e31\u0e01\u0e29\u0e23 \u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e1b\u0e49\u0e2d\u0e07\u0e01\u0e31\u0e19\u0e02\u0e49\u0e2d\u0e08\u0e33\u0e01\u0e31\u0e14 50,000 \u0e15\u0e31\u0e27\u0e2d\u0e31\u0e01\u0e29\u0e23\u0e15\u0e48\u0e2d\u0e40\u0e0b\u0e25\u0e25\u0e4c\u0e02\u0e2d\u0e07 Google Sheets\n */\nfunction saveSystemState(stateObj, updatedIso) {\n  const sheet = getOrCreateSheet(SHEET_SYSTEM_STATE);\n  \n  // \u0e2a\u0e23\u0e49\u0e32\u0e07 Header \u0e16\u0e49\u0e32\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e21\u0e35\n  if (sheet.getLastRow() < 1) {\n    sheet.getRange(1, 1, 1, 3).setValues([[\"\u0e25\u0e33\u0e14\u0e31\u0e1a Chunk\", \"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a (System State JSON)\", \"\u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e2d\u0e31\u0e1b\u0e40\u0e14\u0e15\"]]);\n    sheet.getRange(1, 1, 1, 3).setBackground(\"#1e3a8a\").setFontColor(\"#ffffff\").setFontWeight(\"bold\");\n    sheet.setFrozenRows(1);\n  }\n\n  const jsonStr = JSON.stringify(stateObj);\n  const chunkSize = 40000;\n  const chunks = [];\n  for (let i = 0; i < jsonStr.length; i += chunkSize) {\n    chunks.push([\n      Math.floor(i / chunkSize) + 1,\n      jsonStr.substring(i, i + chunkSize),\n      updatedIso\n    ]);\n  }\n\n  // \u0e25\u0e49\u0e32\u0e07\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e40\u0e14\u0e34\u0e21\u0e41\u0e16\u0e27\u0e17\u0e35\u0e48 2 \u0e40\u0e1b\u0e47\u0e19\u0e15\u0e49\u0e19\u0e44\u0e1b\n  const lastRow = Math.max(sheet.getLastRow(), 2);\n  sheet.getRange(2, 1, lastRow, 3).clearContent();\n\n  // \u0e40\u0e02\u0e35\u0e22\u0e19\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25 Chunk \u0e43\u0e2b\u0e21\u0e48\u0e25\u0e07\u0e44\u0e1b\n  if (chunks.length > 0) {\n    sheet.getRange(2, 1, chunks.length, 3).setValues(chunks);\n  }\n}\n\n/**\n * \u0e42\u0e2b\u0e25\u0e14\u0e2a\u0e16\u0e32\u0e19\u0e30\u0e23\u0e30\u0e1a\u0e1a\u0e08\u0e32\u0e01\u0e41\u0e17\u0e47\u0e1a \"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a\" \u0e42\u0e14\u0e22\u0e23\u0e27\u0e21 Chunk \u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14\u0e01\u0e25\u0e31\u0e1a\u0e04\u0e37\u0e19\u0e40\u0e1b\u0e47\u0e19 JSON\n */\nfunction loadSystemState() {\n  const ss = SpreadsheetApp.getActiveSpreadsheet();\n  const sheet = ss.getSheetByName(SHEET_SYSTEM_STATE);\n  if (!sheet || sheet.getLastRow() < 2) {\n    return { updated_at: null, data: null };\n  }\n\n  const lastRow = sheet.getLastRow();\n  const values = sheet.getRange(2, 1, lastRow - 1, 3).getValues();\n  \n  let jsonStr = \"\";\n  let updatedIso = \"\";\n  for (let i = 0; i < values.length; i++) {\n    jsonStr += (values[i][1] || \"\");\n    if (values[i][2]) updatedIso = values[i][2];\n  }\n\n  try {\n    const data = JSON.parse(jsonStr);\n    return { updated_at: updatedIso, data: data };\n  } catch (e) {\n    return { updated_at: updatedIso, data: null, error: e.toString() };\n  }\n}\n\n/**\n * \u0e2b\u0e31\u0e27\u0e04\u0e2d\u0e25\u0e31\u0e21\u0e19\u0e4c\u0e02\u0e2d\u0e07\u0e41\u0e17\u0e47\u0e1a \"\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\"\n */\nconst RECEIPT_HEADERS = [\n  \"\u0e25\u0e33\u0e14\u0e31\u0e1a\",\n  \"\u0e40\u0e25\u0e48\u0e21\u0e17\u0e35\u0e48\",\n  \"\u0e40\u0e25\u0e02\u0e17\u0e35\u0e48\",\n  \"\u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e2d\u0e2d\u0e01\",\n  \"\u0e40\u0e27\u0e25\u0e32\",\n  \"\u0e0a\u0e37\u0e48\u0e2d\u0e1c\u0e39\u0e49\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19\",\n  \"\u0e1b\u0e23\u0e30\u0e40\u0e20\u0e17\u0e1c\u0e39\u0e49\u0e0a\u0e33\u0e23\u0e30\",\n  \"\u0e2a\u0e31\u0e07\u0e01\u0e31\u0e14/\u0e2b\u0e19\u0e48\u0e27\u0e22\u0e07\u0e32\u0e19 (\u0e1a\u0e23\u0e23\u0e17\u0e31\u0e14 1)\",\n  \"\u0e17\u0e35\u0e48\u0e2d\u0e22\u0e39\u0e48/\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e31\u0e14 (\u0e1a\u0e23\u0e23\u0e17\u0e31\u0e14 2)\",\n  \"\u0e23\u0e32\u0e22\u0e01\u0e32\u0e23\u0e0a\u0e33\u0e23\u0e30\",\n  \"\u0e42\u0e04\u0e23\u0e07\u0e01\u0e32\u0e23\",\n  \"\u0e08\u0e33\u0e19\u0e27\u0e19\u0e40\u0e07\u0e34\u0e19\u0e23\u0e27\u0e21 (\u0e1a\u0e32\u0e17)\",\n  \"\u0e27\u0e34\u0e18\u0e35\u0e0a\u0e33\u0e23\u0e30\u0e40\u0e07\u0e34\u0e19\",\n  \"\u0e18\u0e19\u0e32\u0e04\u0e32\u0e23\u0e15\u0e49\u0e19\u0e17\u0e32\u0e07\",\n  \"\u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e42\u0e2d\u0e19\",\n  \"\u0e40\u0e27\u0e25\u0e32\u0e42\u0e2d\u0e19\",\n  \"\u0e40\u0e02\u0e49\u0e32\u0e1a\u0e31\u0e0d\u0e0a\u0e35\u0e21\u0e2b\u0e32\u0e27\u0e34\u0e17\u0e22\u0e32\u0e25\u0e31\u0e22\",\n  \"\u0e2a\u0e16\u0e32\u0e19\u0e30\",\n  \"\u0e40\u0e2b\u0e15\u0e38\u0e1c\u0e25\u0e22\u0e01\u0e40\u0e25\u0e34\u0e01\",\n  \"\u0e1c\u0e39\u0e49\u0e2d\u0e2d\u0e01\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\",\n  \"\u0e15\u0e33\u0e41\u0e2b\u0e19\u0e48\u0e07\u0e1c\u0e39\u0e49\u0e2d\u0e2d\u0e01\",\n  \"\u0e23\u0e2b\u0e31\u0e2a\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e19\u0e49\u0e32\u0e17\u0e35\u0e48\",\n  \"\u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e1a\u0e31\u0e19\u0e17\u0e36\u0e01\u0e40\u0e02\u0e49\u0e32\u0e23\u0e30\u0e1a\u0e1a\",\n  \"Receipt ID\"\n];\n\nfunction initReceiptSheetHeaders(sheet) {\n  sheet.getRange(1, 1, 1, RECEIPT_HEADERS.length).setValues([RECEIPT_HEADERS]);\n  const headerRange = sheet.getRange(1, 1, 1, RECEIPT_HEADERS.length);\n  headerRange.setBackground(\"#1e3a8a\");\n  headerRange.setFontColor(\"#ffffff\");\n  headerRange.setFontWeight(\"bold\");\n  headerRange.setHorizontalAlignment(\"center\");\n  headerRange.setWrap(true);\n  sheet.setFrozenRows(1);\n  sheet.setRowHeight(1, 38);\n}\n\nfunction receiptToRow(r, index) {\n  let itemName = \"\";\n  let projectName = \"\";\n  if (r.items && Array.isArray(r.items) && r.items.length > 0) {\n    itemName = r.items.map(it => it.paymentItem || \"\").filter(Boolean).join(\", \");\n    projectName = r.items.map(it => it.projectName || \"\").filter(Boolean).join(\", \");\n  }\n\n  return [\n    index,\n    r.bookNo || \"\",\n    r.no || \"\",\n    r.date || \"\",\n    r.time || \"\",\n    r.payerFullName || ((r.title || \"\") + (r.firstName || \"\") + \" \" + (r.lastName || \"\")).trim(),\n    r.payerType || \"\u0e1a\u0e38\u0e04\u0e04\u0e25\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b\",\n    r.detailLine1 || \"\",\n    r.detailLine2 || \"\",\n    itemName || \"\u0e04\u0e48\u0e32\u0e25\u0e07\u0e17\u0e30\u0e40\u0e1a\u0e35\u0e22\u0e19\",\n    projectName || \"\",\n    Number(r.totalAmount) || 0,\n    r.paymentMethod || \"\u0e40\u0e07\u0e34\u0e19\u0e42\u0e2d\u0e19\",\n    r.payerBank || \"\",\n    r.transferDate || \"\",\n    r.transferTime || \"\",\n    r.universityBank || \"\",\n    r.status || \"\u0e1b\u0e01\u0e15\u0e34\",\n    r.cancelReason || \"\",\n    r.issuerName || \"\",\n    r.issuerPosition || \"\",\n    r.issuerStaffCode || \"\",\n    r.createdAt || \"\",\n    r.id || \"\"\n  ];\n}\n\n/**\n * \u0e0b\u0e34\u0e07\u0e04\u0e4c\u0e23\u0e32\u0e22\u0e01\u0e32\u0e23\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14\u0e25\u0e07\u0e0a\u0e35\u0e15 \"\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\" \u0e41\u0e1a\u0e1a\u0e40\u0e23\u0e35\u0e22\u0e07\u0e15\u0e32\u0e21\u0e40\u0e25\u0e02\u0e17\u0e35\u0e48\n */\nfunction syncReceiptsToSheet(receipts) {\n  const sheet = getOrCreateSheet(SHEET_RECEIPTS);\n  initReceiptSheetHeaders(sheet);\n\n  if (!receipts || receipts.length === 0) return;\n\n  // \u0e40\u0e23\u0e35\u0e22\u0e07\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e15\u0e32\u0e21\u0e44\u0e17\u0e21\u0e4c\u0e44\u0e25\u0e19\u0e4c \u0e27\u0e31\u0e19\u0e17\u0e35\u0e48 \u0e40\u0e25\u0e48\u0e21\u0e17\u0e35\u0e48 \u0e41\u0e25\u0e30\u0e40\u0e25\u0e02\u0e17\u0e35\u0e48\u0e15\u0e32\u0e21\u0e25\u0e33\u0e14\u0e31\u0e1a\u0e01\u0e32\u0e23\u0e2d\u0e2d\u0e01\u0e2d\u0e22\u0e48\u0e32\u0e07\u0e2a\u0e21\u0e1a\u0e39\u0e23\u0e13\u0e4c\n  const sorted = receipts.slice().sort((a, b) => {\n    const dateA = a.date || \"\";\n    const dateB = b.date || \"\";\n    if (dateA !== dateB) return dateA.localeCompare(dateB);\n    const bookCmp = String(a.bookNo || \"\").localeCompare(String(b.bookNo || \"\"));\n    if (bookCmp !== 0) return bookCmp;\n    const noA = parseInt(String(a.no || \"0\").replace(/\\D/g, \"\"), 10) || 0;\n    const noB = parseInt(String(b.no || \"0\").replace(/\\D/g, \"\"), 10) || 0;\n    if (noA !== noB) return noA - noB;\n    return (a.time || \"\").localeCompare(b.time || \"\");\n  });\n\n  const rows = [];\n  for (let i = 0; i < sorted.length; i++) {\n    rows.push(receiptToRow(sorted[i], i + 1));\n  }\n\n  // \u0e25\u0e49\u0e32\u0e07\u0e40\u0e19\u0e37\u0e49\u0e2d\u0e2b\u0e32\u0e40\u0e14\u0e34\u0e21 (\u0e15\u0e31\u0e49\u0e07\u0e41\u0e15\u0e48\u0e41\u0e16\u0e27\u0e17\u0e35\u0e48 2)\n  const maxClear = Math.max(sheet.getLastRow(), rows.length + 1);\n  if (maxClear >= 2) {\n    sheet.getRange(2, 1, maxClear, RECEIPT_HEADERS.length).clearContent();\n  }\n\n  // \u0e40\u0e02\u0e35\u0e22\u0e19\u0e41\u0e16\u0e27\u0e43\u0e2b\u0e21\u0e48\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14\n  sheet.getRange(2, 1, rows.length, RECEIPT_HEADERS.length).setValues(rows);\n\n  // \u0e01\u0e33\u0e2b\u0e19\u0e14\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02\u0e40\u0e07\u0e34\u0e19\u0e43\u0e19\u0e04\u0e2d\u0e25\u0e31\u0e21\u0e19\u0e4c 12 (\u0e08\u0e33\u0e19\u0e27\u0e19\u0e40\u0e07\u0e34\u0e19\u0e23\u0e27\u0e21) \u0e40\u0e1b\u0e47\u0e19 #,##0.00\n  sheet.getRange(2, 12, rows.length, 1).setNumberFormat(\"#,##0.00\");\n  \n  // \u0e08\u0e31\u0e14\u0e01\u0e36\u0e48\u0e07\u0e01\u0e25\u0e32\u0e07\u0e04\u0e2d\u0e25\u0e31\u0e21\u0e19\u0e4c \u0e25\u0e33\u0e14\u0e31\u0e1a, \u0e40\u0e25\u0e48\u0e21\u0e17\u0e35\u0e48, \u0e40\u0e25\u0e02\u0e17\u0e35\u0e48, \u0e27\u0e31\u0e19\u0e17\u0e35\u0e48, \u0e2a\u0e16\u0e32\u0e19\u0e30\n  sheet.getRange(2, 1, rows.length, 5).setHorizontalAlignment(\"center\");\n  sheet.getRange(2, 18, rows.length, 1).setHorizontalAlignment(\"center\");\n}\n\n/**\n * \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e41\u0e16\u0e27\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e43\u0e1a\u0e43\u0e2b\u0e21\u0e48\u0e15\u0e48\u0e2d\u0e17\u0e49\u0e32\u0e22\u0e17\u0e31\u0e19\u0e17\u0e35 (\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e15\u0e2d\u0e19\u0e01\u0e14\u0e2d\u0e2d\u0e01\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e41\u0e1a\u0e1a Real-time)\n */\nfunction appendReceiptRow(r) {\n  const sheet = getOrCreateSheet(SHEET_RECEIPTS);\n  if (sheet.getLastRow() < 1) {\n    initReceiptSheetHeaders(sheet);\n  }\n  const nextIndex = sheet.getLastRow();\n  const row = receiptToRow(r, nextIndex);\n  sheet.appendRow(row);\n\n  const newRowIndex = sheet.getLastRow();\n  sheet.getRange(newRowIndex, 12).setNumberFormat(\"#,##0.00\");\n  sheet.getRange(newRowIndex, 1, 1, 5).setHorizontalAlignment(\"center\");\n  sheet.getRange(newRowIndex, 18).setHorizontalAlignment(\"center\");\n}\n\nfunction formatAllSheets() {\n  const ss = SpreadsheetApp.getActiveSpreadsheet();\n  const rSheet = getOrCreateSheet(SHEET_RECEIPTS);\n  initReceiptSheetHeaders(rSheet);\n  const sSheet = getOrCreateSheet(SHEET_SYSTEM_STATE);\n  if (sSheet.getLastRow() < 1) {\n    sSheet.getRange(1, 1, 1, 3).setValues([[\"\u0e25\u0e33\u0e14\u0e31\u0e1a Chunk\", \"\u0e02\u0e49\u0e2d\u0e21\u0e39\u0e25\u0e23\u0e30\u0e1a\u0e1a (System State JSON)\", \"\u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e2d\u0e31\u0e1b\u0e40\u0e14\u0e15\"]]);\n    sSheet.getRange(1, 1, 1, 3).setBackground(\"#1e3a8a\").setFontColor(\"#ffffff\").setFontWeight(\"bold\");\n  }\n}\n\n\n/**\n * \u0e14\u0e36\u0e07\u0e23\u0e32\u0e22\u0e01\u0e32\u0e23\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e17\u0e31\u0e49\u0e07\u0e2b\u0e21\u0e14\u0e08\u0e32\u0e01\u0e41\u0e17\u0e47\u0e1a \"\u0e43\u0e1a\u0e40\u0e2a\u0e23\u0e47\u0e08\u0e23\u0e31\u0e1a\u0e40\u0e07\u0e34\u0e19\"\n */\nfunction getReceiptsFromSheet() {\n  const ss = SpreadsheetApp.getActiveSpreadsheet();\n  const sheet = ss.getSheetByName(SHEET_RECEIPTS);\n  if (!sheet || sheet.getLastRow() < 2) return [];\n  const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, RECEIPT_HEADERS.length).getValues();\n  return rows.map(r => ({\n    noIndex: r[0],\n    bookNo: r[1],\n    no: String(r[2]),\n    date: r[3],\n    time: r[4],\n    payerFullName: r[5],\n    payerType: r[6],\n    detailLine1: r[7],\n    detailLine2: r[8],\n    paymentItem: r[9],\n    projectName: r[10],\n    totalAmount: r[11],\n    paymentMethod: r[12],\n    payerBank: r[13],\n    transferDate: r[14],\n    transferTime: r[15],\n    universityBank: r[16],\n    status: r[17],\n    cancelReason: r[18],\n    issuerName: r[19],\n    issuerPosition: r[20],\n    issuerStaffCode: r[21],\n    createdAt: r[22],\n    id: r[23]\n  }));\n}\n";
 
     function openDatabaseConfigModal(defaultTab = null) {
-      const gasUrl = cleanGasUrl(safeGetItem("rmutsb_gas_url"));
+      const gasUrl = cleanGasUrl(safeGetItem("rmutsb_test_gas_url"));
       const gasInp = document.getElementById("cfgGasUrl");
       if (gasInp) gasInp.value = gasUrl || "";
 
@@ -9780,7 +9788,7 @@ ${loginUrl}
       const modal = document.getElementById("databaseConfigModal");
       if (modal) modal.classList.add("open");
 
-      const activeProvider = safeGetItem("rmutsb_active_db_provider") || (gasUrl ? "googlesheet" : "supabase");
+      const activeProvider = safeGetItem("rmutsb_test_active_db_provider") || (gasUrl ? "googlesheet" : "supabase");
       switchDbModalTab(defaultTab || (activeProvider === "googlesheet" ? "gas" : (activeProvider === "supabase" ? "supabase" : "gas")));
     }
 
@@ -9844,7 +9852,7 @@ ${loginUrl}
 
     async function syncCurrentStateToGoogleSheetFromModal() {
       const inp = document.getElementById("cfgGasUrl");
-      const rawVal = (inp ? inp.value : (safeGetItem("rmutsb_gas_url") || "")).trim();
+      const rawVal = (inp ? inp.value : (safeGetItem("rmutsb_test_gas_url") || "")).trim();
       if (rawVal.includes("docs.google.com/spreadsheets")) {
         showToast("คุณใส่ลิงก์ Google Sheets: ระบบต้องการ URL เว็บแอป (ลงท้ายด้วย /exec) ที่ได้จาก Deploy ในชีตนี้ครับ", true, 6000);
         return;
@@ -9863,8 +9871,8 @@ ${loginUrl}
           showToast("กำลังส่งข้อมูลทั้งหมดขึ้น Google Sheet (อาจใช้เวลาประมาณ 2-3 วินาที)...");
           try {
             const res = await persistStateToGas(url, appState);
-            safeSetItem("rmutsb_gas_url", url);
-            safeSetItem("rmutsb_active_db_provider", "googlesheet");
+            safeSetItem("rmutsb_test_gas_url", url);
+            safeSetItem("rmutsb_test_active_db_provider", "googlesheet");
             gasWebAppUrl = url;
             activeDbProvider = "googlesheet";
 
@@ -9898,8 +9906,8 @@ ${loginUrl}
         showToast("กรุณากรอก Google Apps Script Web App URL (ลงท้ายด้วย /exec)", true);
         return;
       }
-      safeSetItem("rmutsb_gas_url", url);
-      safeSetItem("rmutsb_active_db_provider", "googlesheet");
+      safeSetItem("rmutsb_test_gas_url", url);
+      safeSetItem("rmutsb_test_active_db_provider", "googlesheet");
       gasWebAppUrl = url;
       activeDbProvider = "googlesheet";
 
@@ -9962,9 +9970,9 @@ ${loginUrl}
         showToast("กรุณากรอกทั้ง Supabase Project URL และ Anon Key", true);
         return;
       }
-      safeSetItem("rmutsb_supabase_url", url);
-      safeSetItem("rmutsb_supabase_anon_key", key);
-      safeSetItem("rmutsb_active_db_provider", "supabase");
+      safeSetItem("rmutsb_test_supabase_url", url);
+      safeSetItem("rmutsb_test_supabase_anon_key", key);
+      safeSetItem("rmutsb_test_active_db_provider", "supabase");
       if (window.RMUTSB_SUPABASE_CONFIG) {
         window.RMUTSB_SUPABASE_CONFIG.saveConfig(url, key);
       }
@@ -9974,9 +9982,9 @@ ${loginUrl}
     }
 
     async function resetToDefaultSupabaseConfig() {
-      safeSetItem("rmutsb_supabase_url", BUILTIN_DEFAULT_SUPABASE_URL);
-      safeSetItem("rmutsb_supabase_anon_key", BUILTIN_DEFAULT_SUPABASE_ANON_KEY);
-      safeSetItem("rmutsb_active_db_provider", "supabase");
+      safeSetItem("rmutsb_test_supabase_url", BUILTIN_DEFAULT_SUPABASE_URL);
+      safeSetItem("rmutsb_test_supabase_anon_key", BUILTIN_DEFAULT_SUPABASE_ANON_KEY);
+      safeSetItem("rmutsb_test_active_db_provider", "supabase");
       if (window.RMUTSB_SUPABASE_CONFIG) {
         window.RMUTSB_SUPABASE_CONFIG.saveConfig(BUILTIN_DEFAULT_SUPABASE_URL, BUILTIN_DEFAULT_SUPABASE_ANON_KEY);
       }
@@ -9986,7 +9994,7 @@ ${loginUrl}
     }
 
     async function resetToFallbackMode() {
-      safeSetItem("rmutsb_active_db_provider", "fallback");
+      safeSetItem("rmutsb_test_active_db_provider", "fallback");
       activeDbProvider = "fallback";
       closeDatabaseConfigModal();
       await initDatabaseConnection();
@@ -10077,7 +10085,7 @@ with check (true);
               await persistStateToGas(gasWebAppUrl, appState);
               if (supabaseClient) {
                 try {
-                  await supabaseClient.from("app_state").upsert({ id: "main", data: appState, updated_at: new Date().toISOString() });
+                  await supabaseClient.from("app_state").upsert({ id: "test", data: appState, updated_at: new Date().toISOString() });
                 } catch(e) {}
               }
               showToast("✓ ซิงค์ข้อมูลเรียบร้อยแล้ว (" + receiptCount + " ใบเสร็จ)");
@@ -10087,7 +10095,7 @@ with check (true);
               }
               if (!supabaseClient) throw new Error("ไม่สามารถเชื่อมต่อ Supabase ได้ กรุณาตรวจสอบการตั้งค่า");
               const { error: upsertErr } = await supabaseClient.from("app_state").upsert({
-                id: "main",
+                id: "test",
                 data: appState,
                 updated_at: new Date().toISOString()
               });
@@ -10096,7 +10104,7 @@ with check (true);
             }
 
             lastStateUpdatedAt = new Date().toISOString();
-            safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+            safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
             if (broadcastChannel) {
               broadcastChannel.postMessage({ type: "STATE_UPDATED", ts: Date.now() });
             }
@@ -10170,7 +10178,7 @@ with check (true);
       const downloadAnchor = document.createElement("a");
       const today = new Date().toISOString().slice(0, 10);
       downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `rmutsb_receipt_backup_${today}.json`);
+      downloadAnchor.setAttribute("download", `rmutsb_test_receipt_backup_${today}.json`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
@@ -10187,7 +10195,7 @@ with check (true);
         const parsed = JSON.parse(area.value.trim());
         const normalized = normalizeAndMigrateAppState(parsed);
         appState = normalized;
-        safeSetItem("rmutsb_fallback_app_state", JSON.stringify(appState));
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
         if (broadcastChannel) {
           broadcastChannel.postMessage({ type: "STATE_UPDATED", ts: Date.now() });
         }

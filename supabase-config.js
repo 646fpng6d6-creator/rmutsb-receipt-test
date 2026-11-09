@@ -8,7 +8,7 @@
 
 const DEFAULT_SUPABASE_URL = "https://qrjkcsadqinujtpnsdvi.supabase.co";
 const DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_mBEYicRTTxEo0JNlf3TLFg_1w7he-Gw";
-const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4IF3hA2w16lkRZMDQruWVLa88k03DmqPS31SHUWGpMA/exec";
+const DEFAULT_GAS_URL = "";
 
 const SUPABASE_KEY_CANDIDATES = [
   DEFAULT_SUPABASE_ANON_KEY
@@ -57,15 +57,15 @@ function cleanGasUrl(u) {
     try { localStorage.removeItem(k); } catch (e) {}
   }
 
-  let savedUrl = cleanSupabaseUrl(getSaved("rmutsb_supabase_url"));
-  let savedKey = cleanSupabaseKey(getSaved("rmutsb_supabase_anon_key"));
-  let savedGasUrl = cleanGasUrl(getSaved("rmutsb_gas_url") || DEFAULT_GAS_URL);
-  let activeProvider = getSaved("rmutsb_active_db_provider") || (savedGasUrl ? "googlesheet" : "supabase");
+  let savedUrl = cleanSupabaseUrl(getSaved("rmutsb_test_supabase_url"));
+  let savedKey = cleanSupabaseKey(getSaved("rmutsb_test_supabase_anon_key"));
+  let savedGasUrl = cleanGasUrl(getSaved("rmutsb_test_gas_url") || DEFAULT_GAS_URL);
+  let activeProvider = getSaved("rmutsb_test_active_db_provider") || "supabase";
 
-  setSaved("rmutsb_supabase_url", savedUrl);
-  setSaved("rmutsb_supabase_anon_key", savedKey);
-  if (savedGasUrl) setSaved("rmutsb_gas_url", savedGasUrl);
-  setSaved("rmutsb_active_db_provider", activeProvider);
+  setSaved("rmutsb_test_supabase_url", savedUrl);
+  setSaved("rmutsb_test_supabase_anon_key", savedKey);
+  if (savedGasUrl) setSaved("rmutsb_test_gas_url", savedGasUrl);
+  setSaved("rmutsb_test_active_db_provider", activeProvider);
 
   window.RMUTSB_DATABASE_CONFIG = {
     activeProvider: activeProvider, // "googlesheet" | "supabase" | "fallback"
@@ -75,19 +75,19 @@ function cleanGasUrl(u) {
     pollingIntervalMs: 15000,
     
     getGasUrl: function() {
-      return cleanGasUrl(getSaved("rmutsb_gas_url") || this.gasUrl);
+      return cleanGasUrl(getSaved("rmutsb_test_gas_url") || this.gasUrl);
     },
     saveGasUrl: function(url) {
       const clean = cleanGasUrl(url);
-      setSaved("rmutsb_gas_url", clean);
+      setSaved("rmutsb_test_gas_url", clean);
       this.gasUrl = clean;
       this.setActiveProvider("googlesheet");
     },
     getActiveProvider: function() {
-      return getSaved("rmutsb_active_db_provider") || this.activeProvider || "supabase";
+      return getSaved("rmutsb_test_active_db_provider") || this.activeProvider || "supabase";
     },
     setActiveProvider: function(provider) {
-      setSaved("rmutsb_active_db_provider", provider);
+      setSaved("rmutsb_test_active_db_provider", provider);
       this.activeProvider = provider;
     }
   };
@@ -104,8 +104,8 @@ function cleanGasUrl(u) {
     saveConfig: function (newUrl, newAnonKey) {
       const cleanUrl = cleanSupabaseUrl(newUrl);
       const cleanKey = cleanSupabaseKey(newAnonKey);
-      setSaved("rmutsb_supabase_url", cleanUrl);
-      setSaved("rmutsb_supabase_anon_key", cleanKey);
+      setSaved("rmutsb_test_supabase_url", cleanUrl);
+      setSaved("rmutsb_test_supabase_anon_key", cleanKey);
       this.url = cleanUrl;
       this.anonKey = cleanKey;
       window.RMUTSB_DATABASE_CONFIG.supabaseUrl = cleanUrl;
@@ -113,18 +113,18 @@ function cleanGasUrl(u) {
       window.RMUTSB_DATABASE_CONFIG.setActiveProvider("supabase");
     },
     clearConfig: function () {
-      removeSaved("rmutsb_supabase_url");
-      removeSaved("rmutsb_supabase_anon_key");
+      removeSaved("rmutsb_test_supabase_url");
+      removeSaved("rmutsb_test_supabase_anon_key");
       this.url = DEFAULT_SUPABASE_URL;
       this.anonKey = DEFAULT_SUPABASE_ANON_KEY;
-      setSaved("rmutsb_supabase_url", DEFAULT_SUPABASE_URL);
-      setSaved("rmutsb_supabase_anon_key", DEFAULT_SUPABASE_ANON_KEY);
+      setSaved("rmutsb_test_supabase_url", DEFAULT_SUPABASE_URL);
+      setSaved("rmutsb_test_supabase_anon_key", DEFAULT_SUPABASE_ANON_KEY);
     },
     markWorkingKey: function (key) {
       if (key && key !== this.anonKey) {
         this.anonKey = key;
       }
-      setSaved("rmutsb_supabase_anon_key", key);
+      setSaved("rmutsb_test_supabase_anon_key", key);
     }
   };
 })();
