@@ -32,26 +32,33 @@ function doGet(e) {
       const state = loadSystemState();
       try {
         const sheetReceipts = getReceiptsFromSheet();
+        const resetAt = (state.data && state.data.resetReceiptsAt) ? new Date(state.data.resetReceiptsAt).getTime() : 0;
+
         if (sheetReceipts && sheetReceipts.length > 0) {
           if (!state.data) state.data = {};
           if (!state.data.receipts) state.data.receipts = [];
 
-          const map = new Map();
-          state.data.receipts.forEach(r => {
-            if (r) {
-              const k = (r.bookNo || "") + "-" + (r.no || "");
-              map.set(k, r);
-            }
-          });
+          // หากเพิ่งมีการล้างประวัติใบเสร็จ และ state.data.receipts เป็นรายการว่าง ไม่ดึงแถวเก่าในชีตกลับมา
+          if (resetAt > 0 && state.data.receipts.length === 0) {
+            // คงไว้ 0 ใบ
+          } else {
+            const map = new Map();
+            state.data.receipts.forEach(r => {
+              if (r) {
+                const k = (r.bookNo || "") + "-" + (r.no || "");
+                map.set(k, r);
+              }
+            });
 
-          sheetReceipts.forEach(sr => {
-            if (sr && sr.bookNo && sr.no) {
-              const k = sr.bookNo + "-" + sr.no;
-              map.set(k, Object.assign({}, map.get(k) || {}, sr));
-            }
-          });
+            sheetReceipts.forEach(sr => {
+              if (sr && sr.bookNo && sr.no) {
+                const k = sr.bookNo + "-" + sr.no;
+                map.set(k, Object.assign({}, map.get(k) || {}, sr));
+              }
+            });
 
-          state.data.receipts = Array.from(map.values());
+            state.data.receipts = Array.from(map.values());
+          }
 
           // ปรับปรุงค่า latest ของเล่มใบเสร็จให้เป็นเลขสูงสุดตามข้อมูลจริงเสมอ
           if (Array.isArray(state.data.books)) {
@@ -299,40 +306,91 @@ function doPost(e) {
     }
 
     // -------------------------------------------------------------------------
+    // ACTION: clearReceipts / resetReceipts (ล้างข้อมูลใบเสร็จใน Google Sheet ทั้งหมด)
+    // -------------------------------------------------------------------------
+    if (action === "clearReceipts" || action === "resetReceipts") {
+      const sheet = getOrCreateSheet(SHEET_RECEIPTS);
+      initReceiptSheetHeaders(sheet);
+      const lastRow = sheet.getLastRow();
+      if (lastRow >= 2) {
+        sheet.getRange(2, 1, lastRow - 1, RECEIPT_HEADERS.length).clearContent();
+      }
+
+      const state = loadSystemState();
+      if (!state.data) state.data = {};
+      state.data.receipts = [];
+      state.data.resetReceiptsAt = nowIso;
+      if (Array.isArray(state.data.books)) {
+        state.data.books.forEach(b => {
+          if (b.bookNo === "TEST001" || b.id === "book-test001" || (b.bookNo && b.bookNo.toUpperCase().includes("TEST"))) {
+            b.latest = 0;
+          }
+        });
+      }
+      saveSystemState(state.data, nowIso);
+
+      return jsonResponse({
+        status: "success",
+        message: "ล้างข้อมูลประวัติใบเสร็จทั้งหมดใน Google Sheet เรียบร้อยแล้ว (รีเซ็ตกลับเป็น 0)",
+        receiptsCount: 0,
+        updated_at: nowIso
+      });
+    }
+
+    // -------------------------------------------------------------------------
     // ACTION: syncState / saveState (Safe Merge & Update)
     // -------------------------------------------------------------------------
     if (action === "syncState" || action === "saveState") {
       const appStateData = payload.data || payload.appState || payload;
-      
-      // ดึงข้อมูลเดิมจากชีตมาผสาน (Non-Destructive Merge) เพื่อป้องกันข้อมูลทับซ้อน
-      const existingSheetReceipts = getReceiptsFromSheet();
-      const mergedMap = new Map();
+      const isExplicitWipe = Boolean(
+        payload.wipeReceipts || 
+        payload.clearExistingReceipts || 
+        (appStateData && Array.isArray(appStateData.receipts) && appStateData.receipts.length === 0 && appStateData.resetReceiptsAt)
+      );
 
-      // 1. นำข้อมูลจากชีตปัจจุบันตั้งเป็นฐาน
-      existingSheetReceipts.forEach(r => {
-        if (r && r.bookNo && r.no) {
-          const k = String(r.bookNo).trim() + "-" + String(r.no).trim();
-          mergedMap.set(k, r);
+      let mergedReceipts = [];
+
+      if (isExplicitWipe) {
+        // สั่งล้างข้อมูลประวัติใบเสร็จ ไม่ผสานข้อมูลเดิมจากชีต
+        mergedReceipts = [];
+        const sheet = getOrCreateSheet(SHEET_RECEIPTS);
+        initReceiptSheetHeaders(sheet);
+        const lastRow = sheet.getLastRow();
+        if (lastRow >= 2) {
+          sheet.getRange(2, 1, lastRow - 1, RECEIPT_HEADERS.length).clearContent();
         }
-      });
+      } else {
+        // ดึงข้อมูลเดิมจากชีตมาผสาน (Non-Destructive Merge) เพื่อป้องกันข้อมูลทับซ้อน
+        const existingSheetReceipts = getReceiptsFromSheet();
+        const mergedMap = new Map();
 
-      // 2. นำข้อมูลที่ไคลเอนต์ส่งมาผสานเข้า
-      if (appStateData && Array.isArray(appStateData.receipts)) {
-        appStateData.receipts.forEach(r => {
+        // 1. นำข้อมูลจากชีตปัจจุบันตั้งเป็นฐาน
+        existingSheetReceipts.forEach(r => {
           if (r && r.bookNo && r.no) {
             const k = String(r.bookNo).trim() + "-" + String(r.no).trim();
-            const existing = mergedMap.get(k);
-            if (!existing) {
-              mergedMap.set(k, r);
-            } else {
-              // ถ้ามีอยู่แล้ว ให้อัปเดตข้อมูลโดยคงสถานะการยกเลิกไว้หากถูกยกเลิกแล้ว
-              mergedMap.set(k, Object.assign({}, existing, r));
-            }
+            mergedMap.set(k, r);
           }
         });
+
+        // 2. นำข้อมูลที่ไคลเอนต์ส่งมาผสานเข้า
+        if (appStateData && Array.isArray(appStateData.receipts)) {
+          appStateData.receipts.forEach(r => {
+            if (r && r.bookNo && r.no) {
+              const k = String(r.bookNo).trim() + "-" + String(r.no).trim();
+              const existing = mergedMap.get(k);
+              if (!existing) {
+                mergedMap.set(k, r);
+              } else {
+                // ถ้ามีอยู่แล้ว ให้อัปเดตข้อมูลโดยคงสถานะการยกเลิกไว้หากถูกยกเลิกแล้ว
+                mergedMap.set(k, Object.assign({}, existing, r));
+              }
+            }
+          });
+        }
+
+        mergedReceipts = Array.from(mergedMap.values());
       }
 
-      const mergedReceipts = Array.from(mergedMap.values());
       appStateData.receipts = mergedReceipts;
 
       // ปรับปรุงค่า latest ของทุกเล่มให้ตรงกับเลขสูงสุดจริง
@@ -555,7 +613,13 @@ function syncReceiptsToSheet(receipts) {
   const sheet = getOrCreateSheet(SHEET_RECEIPTS);
   initReceiptSheetHeaders(sheet);
 
-  if (!receipts || receipts.length === 0) return;
+  const lastRow = sheet.getLastRow();
+  if (!receipts || receipts.length === 0) {
+    if (lastRow >= 2) {
+      sheet.getRange(2, 1, lastRow - 1, RECEIPT_HEADERS.length).clearContent();
+    }
+    return;
+  }
 
   const sorted = receipts.slice().sort((a, b) => {
     const dateA = a.date || "";
