@@ -8,7 +8,8 @@
 
 const DEFAULT_SUPABASE_URL = "https://qrjkcsadqinujtpnsdvi.supabase.co";
 const DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_mBEYicRTTxEo0JNlf3TLFg_1w7he-Gw";
-const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4IF3hA2w16lkRZMDQruWVLa88k03DmqPS31SHUWGpMA/exec";
+// ในระบบทดสอบ (rmutsb-receipt-test) ไม่ใส่ URL ระบบจริง เพื่อแยกข้อมูลทดสอบกับระบบจริงอย่างสมบูรณ์
+const DEFAULT_GAS_URL = "";
 
 const SUPABASE_KEY_CANDIDATES = [
   DEFAULT_SUPABASE_ANON_KEY
@@ -60,6 +61,12 @@ function cleanGasUrl(u) {
   let savedUrl = cleanSupabaseUrl(getSaved("rmutsb_test_supabase_url"));
   let savedKey = cleanSupabaseKey(getSaved("rmutsb_test_supabase_anon_key"));
   let savedGasUrl = cleanGasUrl(getSaved("rmutsb_test_gas_url") || DEFAULT_GAS_URL);
+  // หากตรวจพบ URL เก่าที่เป็นระบบจริง ให้ลบออกจากระบบทดลองทันที
+  if (savedGasUrl && savedGasUrl.includes("AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4")) {
+    removeSaved("rmutsb_test_gas_url");
+    savedGasUrl = "";
+    removeSaved("rmutsb_test_active_db_provider");
+  }
   let activeProvider = getSaved("rmutsb_test_active_db_provider") || (savedGasUrl ? "googlesheet" : "supabase");
 
   setSaved("rmutsb_test_supabase_url", savedUrl);

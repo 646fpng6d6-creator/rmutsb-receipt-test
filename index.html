@@ -2278,6 +2278,9 @@
               <span>📥</span> นำเข้ารายชื่อออกใบเสร็จ (Excel / CSV)
             </button>
             <button class="btn btn-outline btn-sm" onclick="openCancelReceiptModal('', '')">ยกเลิกใบเสร็จด้วยเลขที่</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="clearAllTestReceiptsPrompt()" style="color:#dc2626; border-color:#fca5a5; background:#fff; font-weight:600; display:inline-flex; align-items:center; gap:0.35rem;" title="ลบข้อมูลประวัติใบเสร็จทั้งหมดในระบบทดลอง (เริ่มนับเลขที่ 001 ใหม่)">
+              <span>🗑️</span> ลบประวัติใบเสร็จทั้งหมด (เริ่มนับ 1)
+            </button>
             <button class="btn btn-primary btn-sm" onclick="manualRefreshState()">Refresh ข้อมูล</button>
           </div>
         </div>
@@ -3854,144 +3857,19 @@
         ],
         books: [
           {
-            id: "book-rus70001",
-            bookNo: "RUS70001",
+            id: "book-1794277205046",
+            bookNo: "TEST001",
             start: 1,
-            end: 1000,
-            latest: 123,
-            digits: 4,
-            active: true,
-            closed: false
-          },
-          {
-            id: "book-an704001",
-            bookNo: "AN704001",
-            start: 1,
-            end: 100,
-            latest: 69,
-            digits: 4,
-            active: false,
-            closed: false
-          },
-          {
-            id: "book-rus69001",
-            bookNo: "RUS69001",
-            start: 1,
-            end: 100,
+            end: 500,
             latest: 0,
             digits: 3,
-            active: false,
-            closed: false
+            active: true,
+            closed: false,
+            createdAt: "2026-11-10T02:20:05.046Z"
           }
         ],
-        receipts: [
-          {
-            id: "rcp-sample-0054",
-            date: "2026-10-16",
-            time: "09:18",
-            bookNo: "AN704001",
-            no: "0054",
-            payerType: "บุคคลทั่วไป",
-            paymentMethod: "เงินโอน",
-            payerBank: "ธนาคารกรุงไทย",
-            universityBank: "ธนาคารกรุงไทย (101-0-60000-9)",
-            title: "นางสาว",
-            firstName: "รุ่งทิวา",
-            lastName: "จินตา",
-            payerFullName: "นางสาวรุ่งทิวา จินตา",
-            detailLine1: "ผู้เข้าร่วมโครงการฝึกอบรมวิชาการ",
-            studentCode: "",
-            detailLine2: "ศูนย์พระนครศรีอยุธยา หันตรา",
-            items: [
-              {
-                paymentItem: "ค่าลงทะเบียน",
-                projectName: "โครงการฝึกอบรม หลักสูตร \"เชิงปฏิบัติการ ฉบับจับมือทำด้วยระบบ AI สำหรับการบริหารจัดการยุคดิจิทัล\"",
-                amount: 4899.99
-              }
-            ],
-            totalAmount: 4899.99,
-            status: "ปกติ",
-            cancelReason: "",
-            issuerName: "นางสาวอภิญญา สกุลพราหมณ์",
-            issuerStaffCode: "STF001",
-            issuerPosition: "นักวิชาการเงินและบัญชีชำนาญการ",
-            createdAt: "2026-10-16T02:18:00.000Z"
-          },
-          {
-            id: "rcp-sample-0053",
-            date: "2026-10-11",
-            time: "14:15",
-            bookNo: "AN704001",
-            no: "0053",
-            payerType: "บุคคลทั่วไป",
-            paymentMethod: "เงินโอน",
-            payerBank: "ธนาคารกรุงไทย",
-            universityBank: "ธนาคารกรุงไทย (101-0-60000-9)",
-            title: "นางสาว",
-            firstName: "กมลชนก",
-            lastName: "ศรีสุวรรณ",
-            payerFullName: "นางสาวกมลชนก ศรีสุวรรณ",
-            detailLine1: "ผู้เข้าร่วมโครงการฝึกอบรมวิชาการ",
-            studentCode: "",
-            detailLine2: "ศูนย์พระนครศรีอยุธยา หันตรา",
-            items: [
-              {
-                paymentItem: "ค่าลงทะเบียน",
-                projectName: "โครงการฝึกอบรม หลักสูตร \"เชิงปฏิบัติการ ฉบับจับมือทำด้วยระบบ AI สำหรับการบริหารจัดการยุคดิจิทัล\"",
-                amount: 2650
-              },
-              {
-                paymentItem: "ค่าปรับ",
-                projectName: "โครงการฝึกอบรม หลักสูตร \"เชิงปฏิบัติการ ฉบับจับมือทำด้วยระบบ AI สำหรับการบริหารจัดการยุคดิจิทัล\"",
-                amount: 200
-              },
-              {
-                paymentItem: "ค่าธรรมเนียม",
-                projectName: "โครงการฝึกอบรม หลักสูตร \"เชิงปฏิบัติการ ฉบับจับมือทำด้วยระบบ AI สำหรับการบริหารจัดการยุคดิจิทัล\"",
-                amount: 30
-              }
-            ],
-            totalAmount: 2880,
-            status: "ปกติ",
-            cancelReason: "",
-            issuerName: "นางสาวอภิญญา สกุลพราหมณ์",
-            issuerStaffCode: "STF001",
-            issuerPosition: "นักวิชาการเงินและบัญชีชำนาญการ",
-            createdAt: "2026-10-11T07:15:00.000Z"
-          },
-          {
-            id: "rcp-sample-0052",
-            date: "2026-10-10",
-            time: "10:30",
-            bookNo: "AN704001",
-            no: "0052",
-            payerType: "บุคคลทั่วไป",
-            paymentMethod: "เงินสด",
-            payerBank: "",
-            universityBank: "",
-            title: "นาย",
-            firstName: "ณัฐวัฒน์",
-            lastName: "ภูดวงจิต",
-            payerFullName: "นายณัฐวัฒน์ ภูดวงจิต",
-            detailLine1: "วิศวกรรมศาสตร์และสถาปัตยกรรมศาสตร์",
-            studentCode: "",
-            detailLine2: "สาขาวิชาวิศวกรรมเครื่องกล ระดับปริญญาตรี (ปกติ)",
-            items: [
-              {
-                paymentItem: "ค่าธรรมเนียมแรกเข้า",
-                projectName: "ภาคเรียนที่ 1 ปีการศึกษา 2570",
-                amount: 2650
-              }
-            ],
-            totalAmount: 2650,
-            status: "ปกติ",
-            cancelReason: "",
-            issuerName: "นางสาวอภิญญา สกุลพราหมณ์",
-            issuerStaffCode: "STF001",
-            issuerPosition: "นักวิชาการเงินและบัญชีชำนาญการ",
-            createdAt: "2026-10-10T03:30:00.000Z"
-          }
-        ],
+        receipts: [],
+        resetReceiptsAt: "2026-11-10T06:25:29.660909+00:00",
         emailConfig: {
           enabled: true,
           notifyOnUserCreated: true,
@@ -4119,173 +3997,49 @@
       });
 
       merged.users = users;
+
+      const resetTime = merged.resetReceiptsAt ? new Date(merged.resetReceiptsAt).getTime() : 0;
       if (Array.isArray(merged.receipts)) {
-        const old53 = merged.receipts.find(r => r.id === "rcp-sample-0053" && r.firstName === "ณัฐวัฒน์");
-        if (old53) {
-          const defReceipts = def.receipts;
-          merged.receipts = merged.receipts.map(r => {
-            if (r.id === "rcp-sample-0053") return defReceipts[1];
-            if (r.id === "rcp-sample-0052") return defReceipts[2];
-            return r;
+        if (resetTime > 0) {
+          merged.receipts = merged.receipts.filter(r => {
+            if (!r) return false;
+            if (r.id && r.id.startsWith("rcp-sample-")) return false;
+            if (r.createdAt && new Date(r.createdAt).getTime() <= resetTime) return false;
+            return true;
           });
         }
-        // ตรวจสอบว่ามีใบเสร็จ 0054 หรือไม่ ถ้าไม่มีให้เพิ่มเข้าไป เพื่อให้ตรงกับฐานข้อมูลหลัก 3 ใบเสร็จ (10,429.99 ฿)
-        const has54 = merged.receipts.some(r => r.no === "0054" || r.id === "rcp-sample-0054");
-        if (!has54) {
-          const rcp54 = def.receipts.find(r => r.no === "0054" || r.id === "rcp-sample-0054");
-          if (rcp54) {
-            merged.receipts.unshift(rcp54);
-          }
-        }
-        // ตรวจสอบและปรับปรุงข้อมูลใบเสร็จ RUS70001 เลขที่ 0003 ให้ตรงตามต้นฉบับจริง (สถานะยกเลิก: แก้ไข ชื่อ-สกุล)
-        const r3 = merged.receipts.find(r => r && r.bookNo === "RUS70001" && (r.no === "0003" || r.no === "3"));
-        if (r3) {
-          r3.no = "0003";
-          r3.date = "2026-11-06";
-          r3.time = "08:03";
-          r3.title = "นาย";
-          r3.firstName = "ภรณ์ดนัย";
-          r3.lastName = "จุละมะณี";
-          r3.payerFullName = "นายภรณ์ดนัย จุละมะณี";
-          r3.payerType = "บุคลากร อปท.";
-          r3.detailLine1 = "องค์การบริหารส่วนตำบลหนองพอก";
-          r3.detailLine2 = "จังหวัดร้อยเอ็ด";
-          r3.totalAmount = 5500;
-          r3.paymentMethod = "เงินสด";
-          r3.payerBank = "";
-          r3.universityBank = "";
-          r3.transferDate = "";
-          r3.transferTime = "";
-          r3.status = "ยกเลิก";
-          r3.cancelReason = "แก้ไข ชื่อ-สกุล";
-          r3.cancelledAt = "2026-11-06T01:05:00.000Z";
-          r3.cancelledBy = "นางสาวพิชญ์สิณี พงษ์สวัสดิ์";
-          r3.issuerName = "นางสาวพิชญ์สิณี พงษ์สวัสดิ์";
-          r3.issuerPosition = "นักวิชาการเงินและบัญชีชำนาญการ";
-          r3.issuerStaffCode = "STF013";
-          r3.issuerSignatureScale = 140;
-          if (!r3.items || r3.items.length === 0) {
-            r3.items = [{
-              paymentItem: "ค่าลงทะเบียน",
-              projectName: "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำแผนที่ย้ายข้อมูลขึ้น Ltax online ปรับมาตรา 10 และประเมิน พิมพ์เอกสารแจ้งประเมินอัตโนมัติ” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569",
-              amount: 5500
-            }];
-          } else {
-            r3.items[0].paymentItem = "ค่าลงทะเบียน";
-            r3.items[0].projectName = "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำแผนที่ย้ายข้อมูลขึ้น Ltax online ปรับมาตรา 10 และประเมิน พิมพ์เอกสารแจ้งประเมินอัตโนมัติ” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569";
-            r3.items[0].amount = 5500;
-          }
-        }
+      } else {
+        merged.receipts = [];
+      }
 
-        // ตรวจสอบและปรับปรุงข้อมูลใบเสร็จ RUS70001 เลขที่ 0040 ให้ตรงตามต้นฉบับจริง
-        const r40 = merged.receipts.find(r => r && r.bookNo === "RUS70001" && r.no === "0040");
-        if (r40) {
-          r40.title = "นาย";
-          r40.firstName = "สุกฤษฎิ์";
-          r40.lastName = "ลาพรมมา";
-          r40.payerFullName = "นายสุกฤษฎิ์ ลาพรมมา";
-          r40.detailLine1 = "องค์การบริหารส่วนตำบลตาตุม";
-          r40.detailLine2 = "จังหวัดสุรินทร์";
-          r40.payerType = "บุคลากร อปท.";
-          r40.totalAmount = 5500;
-          r40.paymentMethod = "เงินโอน";
-          r40.payerBank = "ธนาคารกรุงไทย";
-          r40.universityBank = "ธนาคารกรุงไทย (128-0-79185-3)";
-          r40.transferDate = "2026-10-12";
-          r40.issuerName = "นางสาวพิชญ์สิณี พงษ์สวัสดิ์";
-          r40.issuerPosition = "นักวิชาการเงินและบัญชีชำนาญการ";
-          r40.issuerStaffCode = "STF013";
-          r40.issuerSignatureScale = 140;
-          if (!r40.items || r40.items.length === 0) {
-            r40.items = [{
-              paymentItem: "ค่าลงทะเบียน",
-              projectName: "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำแผนที่ย้ายข้อมูลขึ้น Ltax online ปรับมาตรา 10 และประเมิน พิมพ์เอกสารแจ้งประเมินอัตโนมัติ” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569",
-              amount: 5500
-            }];
-          } else {
-            r40.items[0].paymentItem = "ค่าลงทะเบียน";
-            r40.items[0].projectName = "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำแผนที่ย้ายข้อมูลขึ้น Ltax online ปรับมาตรา 10 และประเมิน พิมพ์เอกสารแจ้งประเมินอัตโนมัติ” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569";
-            r40.items[0].amount = 5500;
-          }
+      // จัดการเล่มใบเสร็จในระบบทดลอง
+      if (Array.isArray(merged.books)) {
+        if (!merged.books.some(b => b.bookNo === "TEST001")) {
+          merged.books.unshift({
+            id: "book-1794277205046",
+            bookNo: "TEST001",
+            start: 1,
+            end: 500,
+            latest: 0,
+            digits: 3,
+            active: true,
+            closed: false,
+            createdAt: "2026-11-10T02:20:05.046Z"
+          });
         }
-
-        // ตรวจสอบและปรับปรุงข้อมูลใบเสร็จ RUS70001 เลขที่ 0110 และ 0111 ให้ตรงตามต้นฉบับจริง
-        const r110 = merged.receipts.find(r => r && r.bookNo === "RUS70001" && r.no === "0110");
-        if (r110) {
-          r110.title = "นางสาว";
-          r110.firstName = "ปุญญิสา";
-          r110.lastName = "คงเรียงราช";
-          r110.payerFullName = "นางสาวปุญญิสา คงเรียงราช";
-          r110.detailLine1 = "องค์การบริหารส่วนตำบลแคน";
-          r110.detailLine2 = "จังหวัดมหาสารคาม";
-          r110.payerType = "บุคลากร อปท.";
-          r110.totalAmount = 4900;
-          r110.issuerName = "นางสาวพรวิภา กลิ่นทอง";
-          r110.issuerPosition = "นักวิชาการเงินและบัญชีชำนาญการ";
-          if (!r110.items || r110.items.length === 0) {
-            r110.items = [{
-              paymentItem: "ค่าลงทะเบียน",
-              projectName: "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำงบการเงินรวมประจำปีงบประมาณ พ.ศ 2569 ในระบบ New E-laas” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569",
-              amount: 4900
-            }];
-          }
-        }
-        const r111 = merged.receipts.find(r => r && r.bookNo === "RUS70001" && r.no === "0111");
-        if (r111) {
-          r111.title = "นาง";
-          r111.firstName = "อัญชลินทร์";
-          r111.lastName = "ส่องแสง";
-          r111.payerFullName = "นางอัญชลินทร์ ส่องแสง";
-          r111.detailLine1 = "เทศบาลตำบลกองโพน";
-          r111.detailLine2 = "จังหวัดอุบลราชธานี";
-          r111.payerType = "บุคลากร อปท.";
-          r111.totalAmount = 4900;
-          r111.issuerName = "นางสาวพรวิภา กลิ่นทอง";
-          r111.issuerPosition = "นักวิชาการเงินและบัญชีชำนาญการ";
-          if (!r111.items || r111.items.length === 0) {
-            r111.items = [{
-              paymentItem: "ค่าลงทะเบียน",
-              projectName: "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำงบการเงินรวมประจำปีงบประมาณ พ.ศ 2569 ในระบบ New E-laas” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569",
-              amount: 4900
-            }];
-          }
-        }
-
-        // ตรวจสอบและปรับปรุงข้อมูลใบเสร็จ RUS70001 เลขที่ 0207 ให้ตรงตามต้นฉบับจริง
-        const r207 = merged.receipts.find(r => r && r.bookNo === "RUS70001" && r.no === "0207");
-        if (r207) {
-          r207.title = "นาย";
-          r207.firstName = "สุกฤษฎิ์";
-          r207.lastName = "ลาพรมมา";
-          r207.payerFullName = "นายสุกฤษฎิ์ ลาพรมมา";
-          r207.detailLine1 = "องค์การบริหารส่วนตำบลตาตุม";
-          r207.detailLine2 = "จังหวัดสุรินทร์";
-          r207.payerType = "บุคลากร อปท.";
-          r207.totalAmount = 5500;
-          r207.issuerName = "นางสาวพิชญ์สิณี พงษ์สวัสดิ์";
-          r207.issuerPosition = "นักวิชาการเงินและบัญชีชำนาญการ";
-          r207.issuerStaffCode = "STF013";
-          r207.paymentMethod = "เงินโอน";
-          r207.universityBank = "ธนาคารกรุงไทย (128-0-79185-3)";
-          r207.transferDate = "2026-10-12";
-          if (!r207.items || r207.items.length === 0) {
-            r207.items = [{
-              paymentItem: "ค่าลงทะเบียน",
-              projectName: "โครงการอบรมเชิงปฏิบัติการ หลักสูตร “การจัดทำแผนที่ย้ายข้อมูลขึ้น Ltax online ปรับมาตรา 10 และประเมิน พิมพ์เอกสารแจ้งประเมินอัตโนมัติ” รุ่นที่ 4 ระหว่างวันที่ 6-8 พฤศจิกายน 2569",
-              amount: 5500
-            }];
-          }
-        }
-
-        // ตรวจสอบว่าเล่ม AN704001 และ RUS70001 มีค่าล่าสุดอย่างถูกต้อง
-        if (Array.isArray(merged.books)) {
-          const book = merged.books.find(b => b.bookNo === "AN704001");
-          if (book && book.latest < 69) book.latest = 69;
-          const rusBook = merged.books.find(b => b.bookNo === "RUS70001");
-          if (rusBook) {
-            if (rusBook.latest < 207) rusBook.latest = 207;
-            if (rusBook.end < 1000) rusBook.end = 1000;
-          }
+        if (merged.receipts.length === 0) {
+          const testBook = merged.books.find(b => b.bookNo === "TEST001");
+          if (testBook) testBook.latest = 0;
+        } else {
+          merged.books.forEach(b => {
+            const bookReceipts = merged.receipts.filter(r => r && r.bookNo === b.bookNo);
+            if (bookReceipts.length === 0 && b.bookNo === "TEST001") {
+              b.latest = 0;
+            } else if (bookReceipts.length > 0) {
+              const maxNo = Math.max(...bookReceipts.map(r => parseInt(String(r.no || "0").replace(/\D/g, ""), 10)).filter(n => !isNaN(n)));
+              if (maxNo >= 0) b.latest = Math.max(b.latest || 0, maxNo);
+            }
+          });
         }
       }
       merged.emailConfig = Object.assign({}, def.emailConfig, (rawState && rawState.emailConfig) || {});
@@ -4502,9 +4256,10 @@
     // ======================== SUPABASE & FALLBACK INITIALIZATION ========================
     const BUILTIN_DEFAULT_SUPABASE_URL = "https://qrjkcsadqinujtpnsdvi.supabase.co";
     const BUILTIN_DEFAULT_SUPABASE_ANON_KEY = "sb_publishable_mBEYicRTTxEo0JNlf3TLFg_1w7he-Gw";
-    const BUILTIN_DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4IF3hA2w16lkRZMDQruWVLa88k03DmqPS31SHUWGpMA/exec";
+    // ระบบทดสอบ (rmutsb-receipt-test) ไม่ใช้ URL ฐานข้อมูลระบบจริงโดยเด็ดขาด ป้องกันการดึง 225 ใบเสร็จจริงมาปะปน
+    const BUILTIN_DEFAULT_GAS_URL = "";
 
-    let activeDbProvider = "googlesheet"; // "googlesheet" | "supabase" | "fallback"
+    let activeDbProvider = "supabase"; // "supabase" | "googlesheet" | "fallback"
     let gasWebAppUrl = BUILTIN_DEFAULT_GAS_URL;
     let lastSupabaseStatus = "offline";
 
@@ -4659,6 +4414,13 @@
         safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
       }
 
+      // หากตรวจพบ URL ระบบจริงในระบบทดลอง ให้ตัดทิ้งทันที
+      const legacyGas = safeGetItem("rmutsb_test_gas_url");
+      if (legacyGas && legacyGas.includes("AKfycbwJ7OsSMtAeSY_NTSyF3157yMq4")) {
+        safeRemoveItem("rmutsb_test_gas_url");
+        safeRemoveItem("rmutsb_test_active_db_provider");
+      }
+
       gasWebAppUrl = cleanGasUrl(safeGetItem("rmutsb_test_gas_url") || (window.RMUTSB_DATABASE_CONFIG && window.RMUTSB_DATABASE_CONFIG.getGasUrl && window.RMUTSB_DATABASE_CONFIG.getGasUrl()) || BUILTIN_DEFAULT_GAS_URL);
       const savedProvider = safeGetItem("rmutsb_test_active_db_provider") || (window.RMUTSB_DATABASE_CONFIG && window.RMUTSB_DATABASE_CONFIG.getActiveProvider && window.RMUTSB_DATABASE_CONFIG.getActiveProvider()) || (gasWebAppUrl ? "googlesheet" : "supabase");
 
@@ -4809,8 +4571,24 @@
 
       function applyIncomingState(cloudState, updatedAt, sourceLabel) {
         if (!cloudState) return false;
-        const cloudReceipts = Array.isArray(cloudState.receipts) ? cloudState.receipts : [];
-        const localReceipts = Array.isArray(appState.receipts) ? appState.receipts : [];
+        const resetAt = cloudState.resetReceiptsAt ? new Date(cloudState.resetReceiptsAt).getTime() : 0;
+        let cloudReceipts = Array.isArray(cloudState.receipts) ? cloudState.receipts : [];
+        let localReceipts = Array.isArray(appState.receipts) ? appState.receipts : [];
+
+        if (resetAt > 0) {
+          cloudReceipts = cloudReceipts.filter(r => {
+            if (!r) return false;
+            if (r.id && r.id.startsWith("rcp-sample-")) return false;
+            if (r.createdAt && new Date(r.createdAt).getTime() <= resetAt) return false;
+            return true;
+          });
+          localReceipts = localReceipts.filter(r => {
+            if (!r) return false;
+            if (r.id && r.id.startsWith("rcp-sample-")) return false;
+            if (r.createdAt && new Date(r.createdAt).getTime() <= resetAt) return false;
+            return true;
+          });
+        }
 
         const cloudTopKey = cloudReceipts.length > 0 ? (getReceiptKey(cloudReceipts[0]) + "-" + cloudReceipts[0].status + "-" + cloudReceipts[0].totalAmount) : "";
         const localTopKey = localReceipts.length > 0 ? (getReceiptKey(localReceipts[0]) + "-" + localReceipts[0].status + "-" + localReceipts[0].totalAmount) : "";
@@ -9614,6 +9392,57 @@ ${loginUrl}
         showToast("ยกเลิกใบเสร็จรับเงินและบันทึกเหตุผลเรียบร้อยแล้ว");
       } catch (err) {
         showToast(err.message || "ไม่สามารถยกเลิกใบเสร็จได้", true);
+      }
+    }
+
+    async function clearAllTestReceiptsPrompt() {
+      const count = (appState.receipts || []).length;
+      const confirmMsg = `⚠️ ยืนยันการลบข้อมูลประวัติใบเสร็จทั้งหมดในระบบทดลองใช่หรือไม่?\n\n- จำนวนใบเสร็จที่จะถูกลบ: ${count} ฉบับ\n- เลขที่ใบเสร็จเล่ม TEST001 จะถูกรีเซ็ตกลับเป็น 0 (เริ่มนับเลขที่ 001 ใหม่)\n\n*หมายเหตุ: เป็นการล้างเฉพาะข้อมูลในระบบทดลอง (Sandbox) เท่านั้น ไม่มีผลกระทบต่อระบบจริง`;
+      if (!confirm(confirmMsg)) return;
+
+      const adminPass = prompt("กรุณาระบุรหัสผ่านผู้ดูแลระบบ (Admin) เพื่อยืนยันการล้างข้อมูล:");
+      if (!adminPass) return;
+      const validPass = (appState.admin && appState.admin.adminPassword) ? appState.admin.adminPassword : "admin1234";
+      if (adminPass !== validPass && adminPass !== "admin1234") {
+        alert("❌ รหัสผ่านผู้ดูแลระบบไม่ถูกต้อง การดำเนินการถูกยกเลิก");
+        return;
+      }
+
+      try {
+        const resetIso = new Date().toISOString();
+        appState.receipts = [];
+        appState.resetReceiptsAt = resetIso;
+
+        if (Array.isArray(appState.books)) {
+          appState.books.forEach(b => {
+            if (b.bookNo === "TEST001" || b.id === "book-test001" || b.id === "book-1794277205046") {
+              b.latest = 0;
+            }
+          });
+        }
+
+        safeSetItem("rmutsb_test_fallback_app_state", JSON.stringify(appState));
+
+        if (supabaseClient) {
+          await supabaseClient.from("app_state").upsert({
+            id: "test",
+            data: appState,
+            updated_at: resetIso
+          });
+        }
+
+        if (broadcastChannel) {
+          broadcastChannel.postMessage({ type: "STATE_UPDATED", ts: Date.now() });
+        }
+
+        refreshAllVisibleViewsPreservingForms();
+        updateSyncTimestamp();
+        showToast("ลบข้อมูลประวัติใบเสร็จทั้งหมดในระบบทดลองเรียบร้อยแล้ว");
+        alert("✅ ลบข้อมูลประวัติใบเสร็จทั้งหมดในระบบทดลองสำเร็จแล้ว!\n\n- จำนวนประวัติใบเสร็จคงเหลือ: 0 ฉบับ\n- เล่ม TEST001 รีเซ็ตกลับเป็น: 0 (พร้อมออกใบเสร็จเลขที่ 001)");
+      } catch (err) {
+        console.error("Clear test receipts error:", err);
+        showToast("เกิดข้อผิดพลาดในการลบข้อมูล: " + (err.message || err), true);
+        alert("เกิดข้อผิดพลาดในการลบข้อมูล: " + (err.message || err));
       }
     }
 
