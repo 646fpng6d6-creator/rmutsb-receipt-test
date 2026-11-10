@@ -31,8 +31,10 @@
 
 ---
 
-## กลไกการแยกส่วน (Complete Environment Isolation)
-1. **ฐานข้อมูล Supabase**: ทำงานบน row `id="test"` แยกเด็ดขาดจากระบบจริง `id="main"`
-2. **WebSocket Realtime**: สื่อสารผ่านช่องทาง `rmutsb-realtime-channel-test` โดยดักฟังเฉพาะ `filter: "id=eq.test"`
+## กลไกการเชื่อมต่อฐานข้อมูล (Database Backend)
+1. **Google Sheets Web App (Primary Database)**:
+   - จัดเก็บข้อมูลใบเสร็จรับเงินทั้งหมดลงแท็บ *"ใบเสร็จรับเงิน"* และข้อมูลระบบลงแท็บ *"ข้อมูลระบบ"*
+   - เชื่อมต่อผ่าน Google Apps Script Web App API (`AKfycbwJ...`)
+   - รองรับการเปิดดูข้อมูลใบเสร็จได้โดยตรงจาก Google Sheets และซิงค์อัตโนมัติแบบเรียลไทม์
+2. **ฐานข้อมูล Supabase (Dual-Sync & Backup)**: ทำงานบน row `id="test"`
 3. **Local Storage**: ใช้งานคีย์นำหน้า `rmutsb_test_*` ทั้งหมด ป้องกันการทับซ้อนกับระบบจริงแม้เปิดบนเบราว์เซอร์เดียวกัน
-4. **Google Sheets**: ปิดการเชื่อมต่ออัตโนมัติไปยัง Google Sheet จริง ป้องกันข้อมูลทดสอบเข้าไปปะปน
