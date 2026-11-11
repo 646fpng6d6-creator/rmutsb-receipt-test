@@ -178,26 +178,30 @@ function doPost(e) {
       if (targetBookIdx >= 0) {
         targetBook = state.data.books[targetBookIdx];
       } else {
-        targetBook = { bookNo: "RUS70001", start: 1, end: 1000, latest: 0, digits: 4, active: true };
+        targetBook = { bookNo: "TEST001", start: 1, end: 1000, latest: 0, digits: 3, active: true };
         state.data.books.push(targetBook);
         targetBookIdx = state.data.books.length - 1;
       }
 
-      const digits = Math.max(Number(targetBook.digits || 4), 3);
+      const digits = Math.max(Number(targetBook.digits || 3), 3);
       const startNum = Number(targetBook.start || 1);
 
       // ค้นหาเลขที่สูงสุดที่แท้จริงจากทั้ง Sheet และ State เพื่อป้องกันเลขซ้ำ 100%
+      const resetAt = (state.data && state.data.resetReceiptsAt) ? new Date(state.data.resetReceiptsAt).getTime() : 0;
       const sheetReceipts = getReceiptsFromSheet();
       let trueMax = Number(targetBook.latest || 0);
 
       sheetReceipts.forEach(r => {
         if (r && r.bookNo === targetBook.bookNo) {
+          // หากมี resetReceiptsAt และข้อมูลสร้างก่อนเวลาล้าง ไม่นำมานับเป็นเลขสูงสุด
+          if (resetAt > 0 && r.createdAt && new Date(r.createdAt).getTime() <= resetAt) return;
           const num = parseInt(String(r.no || "0").replace(/\D/g, ""), 10) || 0;
           if (num > trueMax) trueMax = num;
         }
       });
       state.data.receipts.forEach(r => {
         if (r && r.bookNo === targetBook.bookNo) {
+          if (resetAt > 0 && r.createdAt && new Date(r.createdAt).getTime() <= resetAt) return;
           const num = parseInt(String(r.no || "0").replace(/\D/g, ""), 10) || 0;
           if (num > trueMax) trueMax = num;
         }
@@ -292,6 +296,7 @@ function doPost(e) {
       state.data.receipts = [...newReceipts, ...state.data.receipts];
 
       saveSystemState(state.data, nowIso);
+      SpreadsheetApp.flush();
 
       return jsonResponse({
         status: "success",
@@ -328,6 +333,7 @@ function doPost(e) {
         });
       }
       saveSystemState(state.data, nowIso);
+      SpreadsheetApp.flush();
 
       return jsonResponse({
         status: "success",
@@ -409,6 +415,7 @@ function doPost(e) {
       
       // เขียนใบเสร็จทั้งหมดลงชีตใบเสร็จรับเงิน
       syncReceiptsToSheet(mergedReceipts);
+      SpreadsheetApp.flush();
 
       return jsonResponse({
         status: "success",
